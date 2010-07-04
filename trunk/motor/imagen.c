@@ -18,7 +18,7 @@ SDL_Surface* Imagen_cargar(const char* ruta)
 	
 	/* La adaptamos al formato de la pantalla con color transparente */
 	if((imagen = SDL_DisplayFormatAlpha(temporal)) == NULL){
-		printf("ERROR -> Imagen_cargar(): no se pudo adaptar la imagen $s al formato de la pantalla\n", ruta);
+		printf("ERROR -> Imagen_cargar(): no se pudo adaptar la imagen %s al formato de la pantalla\n", ruta);
 		exit(1);
 	}
 	

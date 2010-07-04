@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "bola.h"
+#include "imagen.h"
 
 Bola Bola_crear(void)
 {
@@ -8,7 +9,10 @@ Bola Bola_crear(void)
 	
 	//Se reserva memoria para una bola
 	if((B=(Bola)malloc(sizeof(tipoBola))) == NULL)
+	{
 		printf("Error -> Bola_crear(): Memoria insuficiente\n");
+		exit(1);
+	}
 	
 	//Posición inicial de la bola
 	B.x=200;
