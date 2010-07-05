@@ -22,7 +22,7 @@ void Pong_dibujar(Pong pong, SDL_Surface* pantalla);
 
 void Pong_actualizar_entrada(Pong pong, Uint8* teclado);
 
-void Pong_actualizar_ia(Pong pong, IA ia);
+/* void Pong_actualizar_ia(Pong pong, IA ia); */
 
 SDL_Rect Pong_rectangulo_colision(Pong pong);
 

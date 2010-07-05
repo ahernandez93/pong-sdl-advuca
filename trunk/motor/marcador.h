@@ -9,8 +9,8 @@ typedef struct{
 	int puntos_j2;
 	int x;
 	int y;
-	int SDL_Color *color;
-	int TTF_Font *fuente;
+	SDL_Color color;
+	TTF_Font *fuente;
 }tipoMarcador;
 
 typedef tipoMarcador* Marcador;

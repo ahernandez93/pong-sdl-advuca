@@ -9,21 +9,21 @@ Bola Bola_crear(void)
 {
 	Bola bola;
 	
-	//Se reserva memoria para una bola
+	/* Se reserva memoria para una bola */
 	if((bola = (Bola)malloc(sizeof(tipoBola))) == NULL){
 		printf("ERROR -> Bola_crear(): Memoria insuficiente\n");
 		exit(1);
 	}
 	
-	//Posición inicial de la bola
+	/* Posición inicial de la bola */
 	bola->x = 200;
 	bola->y = 300;
 	
-	//Velocidad Inicial de la bola
+	/* Velocidad Inicial de la bola */
 	bola->vx = 10;
 	bola->vy = 10;
 	
-	//Le asignamos una imagen a la bola
+	/* Le asignamos una imagen a la bola */
 	bola->imagen = Imagen_cargar("multimedia/bola.png");
 	
 	return bola;
@@ -42,8 +42,8 @@ void Bola_dibujar(Bola bola, SDL_Surface* pantalla)
 
 void Bola_actualizar(Bola bola)
 {
-	bola->x += bola->vx;
-	bola->y += bola->vy;
+	/* bola->x += bola->vx; */
+	/* bola->y += bola->vy; */
 }
 	
 SDL_Rect Bola_rectangulo_colision(Bola bola)

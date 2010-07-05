@@ -1,10 +1,14 @@
-#include <stdio.h">
+#include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <SDL/SDL.h>
+#include <SDL/SDL_image.h>
+#include <SDL/SDL_ttf.h>
+#include <SDL/SDL_mixer.h>
 #include "imagen.h"
 #include "juego.h"
 #include "pong.h"
-#include "marchador.h"
+#include "marcador.h"
 #include "bola.h"
 #include "constantes.h"
 
@@ -13,7 +17,7 @@ SDL_Surface *Juego_iniciar_SDL(void){
 	SDL_Surface* auxiliar;
 	
 	/* Inicializamos SDL */
-	if(SDL_Init(0) < 0){
+	if(SDL_Init(SDL_INIT_EVERYTHING) < 0){
 		printf("ERROR -> Juego_iniciar_SDL(): no se pudo iniciar SDL\n");
 		exit(1);
 	}
@@ -24,7 +28,7 @@ SDL_Surface *Juego_iniciar_SDL(void){
 	/* Cteamos la superficie principal */
 	auxiliar = SDL_SetVideoMode(PANTALLA_ANCHO, PANTALLA_ALTO, BPP, SDL_HWSURFACE | SDL_DOUBLEBUF);
 
-	if(screenaux == NULL){
+	if(auxiliar == NULL){
 		printf("ERROR -> Juego_iniciar_SDL(): no se pudo iniciar la ventana SDL\n");
 		exit(1);
 	}
@@ -77,6 +81,8 @@ int Juego_procesar_eventos(void)
 		}
 	}
 	
+	SDL_PumpEvents();
+	
 	return salir;	
 }
 
@@ -104,16 +110,18 @@ Juego Juego_crear(void)
 	juego->marcador = Marcador_crear();
 	
 	/* Inicializamos el teclado */
-	teclado = SDL_GetKeyState(NULL);
+	juego->teclado = SDL_GetKeyState(NULL);
+	
+	return juego;
 }
 
 void Juego_destruir(Juego juego)
 {
 	/* Destuimos todos los elementos del juego */
 	Pong_destruir(juego->pong1);
-	Pong_destuir(juego->pong2);
-	Bola_destuir(juego->bola);
-	Marcador_destuir(juego->marcador);
+	Pong_destruir(juego->pong2);
+	Bola_destruir(juego->bola);
+	Marcador_destruir(juego->marcador);
 	Imagen_borrar(juego->mesa);
 	
 	/* Cerramos SDL */
@@ -129,37 +137,46 @@ void Juego_bucle_principal(Juego juego)
 	
 	/* Mientras no queramos salir */
 	while(!salir){
-			/* Actualizar entrada */
-			teclado = SDL_GetKeyState(NULL);
+		/* Actualizar entrada */
+		juego->teclado = SDL_GetKeyState(NULL);
+		
+		/* Actualizar pong de J1 según entrada */ 
+		Pong_actualizar_entrada(juego->pong1, juego->teclado);
 			
-			/* Actualizar pong de J1 según entrada */ 
-			Pong_actualizar_entrada(juego->pong1, teclado);
+		/* Actualizar pong de J2 según IA */
+		/* Pong_actualizar_ia(juego->pong2);*/
 			
-			/* Actualizar pong de J2 según IA */
-			Pong_actualizar_ia(juego->pong2);
+		/* Actualizar Bola */
+		Bola_actualizar(juego->bola);
+		
+		/* Borramos la pantalla */
+		SDL_FillRect(juego->pantalla, NULL, SDL_MapRGB(juego->pantalla->format, 0, 0, 0));
 			
-			/* Actualizar Bola */
-			Bola_actualizar(juego->bola);
+		/* Dibujar Mesa */
+		Imagen_dibujar(juego->mesa, juego->pantalla, 0, 0);
 			
-			/* Dibujar Mesa */
-			Imagen_dibujar(juego->mesa, juego->pantalla, 0, 0);
+		/* Dibujar J1 */
+		Pong_dibujar(juego->pong1, juego->pantalla);
 			
-			/* Dibujar J1 */
-			Pong_dibujar(juego->pong1, juego->pantalla);
+		/* Dibujar J2 */
+		Pong_dibujar(juego->pong2, juego->pantalla);
 			
-			/* Dibujar J2 */
-			Pong_dibujar(juego->pong2, juego->pantalla);
+		/* Dibujar Bola */
+		Bola_dibujar(juego->bola, juego->pantalla);
+		
+		/* Dibujar Marcador */
+		Marcador_dibujar(juego->marcador, juego->pantalla);
+		
+		/* Flipping, intercambio de superficies (mostramos la pantalla) */
+		SDL_Flip(juego->pantalla);
 			
-			/* Dibujar Bola */
-			Bola_dibujar(juego->bola, juego->pantalla);
-			
-			/* Colisiones */
-			
-			
-			/* Procesamos la cola de eventos */
-			salir = Juego_procesar_eventos();
-			
-			/* Control de tiempo */
+		/* Colisiones */
+		
+		
+		/* Procesamos la cola de eventos */
+		salir = Juego_procesar_eventos();
+		
+		/* Control de tiempo */
 						
 	}
 }
