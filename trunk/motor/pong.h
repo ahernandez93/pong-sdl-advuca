@@ -18,7 +18,9 @@ Pong Pong_crear(int jugador);
 
 void Pong_destruir(Pong pong);
 
-void Pong_actualizar_entrada(Pong pong, Entrada entrada);
+void Pong_dibujar(Pong pong, SDL_Surface* pantalla);
+
+void Pong_actualizar_entrada(Pong pong, Uint8* teclado);
 
 void Pong_actualizar_ia(Pong pong, IA ia);
 

@@ -1,55 +1,60 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <SDL/SDL.h>
 #include "bola.h"
 #include "imagen.h"
 
 Bola Bola_crear(void)
 {
-	Bola B;
+	Bola bola;
 	
 	//Se reserva memoria para una bola
-	if((B=(Bola)malloc(sizeof(tipoBola))) == NULL)
-	{
-		printf("Error -> Bola_crear(): Memoria insuficiente\n");
+	if((bola = (Bola)malloc(sizeof(tipoBola))) == NULL){
+		printf("ERROR -> Bola_crear(): Memoria insuficiente\n");
 		exit(1);
 	}
 	
 	//Posición inicial de la bola
-	B.x=200;
-	B.y=300;
+	bola->x = 200;
+	bola->y = 300;
 	
 	//Velocidad Inicial de la bola
-	B.vx=10;
-	B.vy=10;
+	bola->vx = 10;
+	bola->vy = 10;
 	
 	//Le asignamos una imagen a la bola
-	B->imagen = Imagen_cargar("../multimedia/bola.png");
+	bola->imagen = Imagen_cargar("multimedia/bola.png");
 	
+	return bola;
 }
 
-void Bola_destruir(Bola B)
+void Bola_destruir(Bola bola)
 {
-	free(B->imagen);
-	free(B);
+	Imagen_borrar(bola->imagen);
+	free(bola);
 }
 
-void Bola_actualizar(Bola B)
+void Bola_dibujar(Bola bola, SDL_Surface* pantalla)
 {
-	B.x += B.vx;
-	B.y += B.vy;
+	Imagen_dibujar(bola->imagen, pantalla, bola->x, bola->y);
+}
+
+void Bola_actualizar(Bola bola)
+{
+	bola->x += bola->vx;
+	bola->y += bola->vy;
 }
 	
-SDL_Rect Bola_rectangulo_colision(Bola B)
+SDL_Rect Bola_rectangulo_colision(Bola bola)
 {
 	SDL_Rect rectangulo;
 	
-	rectangulo.x = B.x;
-	rectangulo.y = B.y;
-	rectangulo.h = B->imagen->h;
-	rectangulo.w = B->imagen->w;
+	rectangulo.x = bola->x;
+	rectangulo.y = bola->y;
+	rectangulo.h = bola->imagen->h;
+	rectangulo.w = bola->imagen->w;
 	
 	return rectangulo;
-	
 }
 	
 

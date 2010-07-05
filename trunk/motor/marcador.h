@@ -2,23 +2,24 @@
 #define _MARCADOR_
 
 #include "SDL/SDL.h"
+#include "SDL/SDL_ttf.h"
 
-	typedef struct
-	{
-		int J1,
-			 J2,
-			 x,
-			 y;
-		SDL_Color *color;
-		TTF_Font *texto;
-	}tipoMarcador;
+typedef struct{
+	int puntos_j1;
+	int puntos_j2;
+	int x;
+	int y;
+	int SDL_Color *color;
+	int TTF_Font *fuente;
+}tipoMarcador;
 
-	typedef tipoMarcador* Marcador;
+typedef tipoMarcador* Marcador;
 
 
-	Marcador Marcador_crear(void);
-	void Marcador_destruir(Marcador B);
-	void Marcador_actualizar(Marcador B, int player);
+Marcador Marcador_crear(void);
+void Marcador_destruir(Marcador marcador);
+void Marcador_dibujar(Marcador marcador, SDL_Surface* pantalla);
+void Marcador_incrementar(Marcador marcador, int jugador);
 
 
 

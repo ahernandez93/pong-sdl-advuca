@@ -3,26 +3,22 @@
 
 #include "SDL/SDL.h"
 
-	typedef struct
-	{
-		int x,
-			 y,
-			 vx,
-			 vy;
-	
-		SDL_Surface *imagen;
-	}tipoBola;
+typedef struct{
+	int x;
+	int y;
+	int vx;
+	int vy;
+	SDL_Surface *imagen;
+}tipoBola;
 
-	typedef tipoBola* Bola;
+typedef tipoBola* Bola;
 
 
-	Bola Bola_crear(void);
-	void Bola_destruir(Bola B);
-	void Bola_actualizar(Bola B);
-	
-	SDL_Rect Bola_rectangulo_colision(Bola B);
-
-
+Bola Bola_crear(void);
+void Bola_destruir(Bola bola);
+void Bola_dibujar(Bola bola, SDL_Surface* pantalla);
+void Bola_actualizar(Bola bola);
+SDL_Rect Bola_rectangulo_colision(Bola bola);
 
 
 #endif
