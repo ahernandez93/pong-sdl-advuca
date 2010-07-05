@@ -131,6 +131,19 @@ void Juego_destruir(Juego juego)
 	free(juego);
 }
 
+int Juego_comprobar_colisiones(Bola bola, Pong pong1, Pong pong2)
+{
+	SDL_Rect rectangulo_bola;
+	
+	//Obtenemos el rectángulo que ocupa la bola
+	rectangulo_bola = Bola_rectangulo_colision(bola);
+
+	//Comprobamos si hay colisión con el extremo superior
+	if(rectangulo_bola.y >= PANTALLA_ALTO){
+		
+	} 
+}
+
 void Juego_bucle_principal(Juego juego)
 {
 	int salir = 0;
@@ -157,6 +170,7 @@ void Juego_bucle_principal(Juego juego)
 			
 		/* Dibujar J1 */
 		Pong_dibujar(juego->pong1, juego->pantalla);
+
 			
 		/* Dibujar J2 */
 		Pong_dibujar(juego->pong2, juego->pantalla);
