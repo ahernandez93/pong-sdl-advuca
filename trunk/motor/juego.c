@@ -6,6 +6,7 @@
 #include "pong.h"
 #include "marchador.h"
 #include "bola.h"
+#include "constantes.h"
 
 SDL_Surface *Juego_iniciar_SDL(void){
 
@@ -131,10 +132,10 @@ void Juego_bucle_principal(Juego juego)
 			/* Actualizar entrada */
 			teclado = SDL_GetKeyState(NULL);
 			
-			/* Actualizar J1 según entrada */ 
+			/* Actualizar pong de J1 según entrada */ 
 			Pong_actualizar_entrada(juego->pong1, teclado);
 			
-			/* Actualizar J2 según IA */
+			/* Actualizar pong de J2 según IA */
 			Pong_actualizar_ia(juego->pong2);
 			
 			/* Actualizar Bola */
