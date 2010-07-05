@@ -1,62 +1,105 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "marcador.h"
 #include <SDL/SDL_ttf.h>
 
 Marcador Marcador_crear(void)
 {
-	Marcador M;
+	Marcador marcador;
 	
-	//Se reserva memoria para el marcador
-	if((M=(Marcador)malloc(sizeof(tipoMarcador))) == NULL)
-	{
-		printf("Error -> Marcador_crear(): Memoria insuficiente\n");
+	/* Se reserva memoria para el marcador */
+	if((marcador = (Marcador)malloc(sizeof(tipoMarcador))) == NULL){
+		printf("ERROR -> Marcador_crear(): Memoria insuficiente\n");
 		exit(1);	
 	}
 	
-	//Posición inicial de la bola
-	M.x=290;
-	M.y=350;
+	/* Posición inicial de la bola */
+	marcador->x = 290;
+	marcador->y = 350;
 
-	//Valor inicial del marcador para cada jugador
-	M.J1=0;
-	M.J2=0;
+	/* Valor inicial del marcador para cada jugador */
+	marcador->puntos_j1 = 0;
+	marcador->puntos_j2 = 0;
 	
-	//Se inicializa la librería auxiliar para los ttf
-	if(!TTF_Init() < 0)
-	{
-		printf(stderr, "No se puede inicializar SDL_ttf\n");
-		exit(1);
-	}
-	//Le asignamos una fuente
-	if((font = TTF_OpenFont("../multimedia/Marcador_font", 30)) == NULL)
-	{
-		printf("Error -> Marcador_crear(): Memoria para la fuente insuficiente\n");
+	/* Le asignamos una fuente */
+	if((fuente = TTF_OpenFont("multimedia/marcador.ttf", 30)) == NULL){
+		printf("ERROR -> Marcador_crear(): No se pudo inicializar la fuente multimedia/marcador.ttf\n", );
 		exit(1);
 	}
 	
-	//Le indicamos el color de la fuente
-	M->color={0,0,0}; //Negro en este caso
+	/* Le indicamos el color de la fuente */
+	marcador->color = {0,0,0}; //Negro en este caso
 	
-	return M;
+	return marcador;
 }
 
-void Marcador_destruir(Marcador B)
+void Marcador_destruir(Marcador marcador)
 {
-	TTF_CloseFont(B->texto);
-	atexit(TTF_QUIT());
-	free(texto);
-	free(B);
+	/* Destuimos la fuente cargada */
+	TTF_CloseFont(marcador->fuente);
+	
+	/* Liberamos la memoria de marcador */
+	free(marcador);
 }
 
-void Marcador_actualizar(Marcador B, player)
+void Marcador_incrementar(Marcador marcador, int jugador)
 {
-	if(player==1)
-		B.J1++;
-	else if(player==2)
-		B.J2++;
+	if(jugador == J1)
+		marcador->puntos_j1++;
+	else
+		marcador->puntos_j2++;
 }
 
+void Marcador_dibujar(Marcador marcador, SDL_Surface* pantalla)
+{
+	char buffer[20];
+	SDL_Surface* temporal;
+	SDL_Surface* superficie;
+	SDL_Rect destino;
+	
+	destino.x = marcador->x;
+	destino.y = marcador->y;
+	
+	/* Puntos del jugador 1 */
+	sprintf(buffer, "%d", marcador->puntos_j1);
+	
+	if((temporal = TTF_RenderUTF8_Solid(marcador->fuente, buffer, marcador->color)) == NULL){
+		printf("ERROR -> Marcador_dibujar(): No se pudo renderizar el texto\n");
+		exit(1);
+	}
 
+	if((superficie = SDL_DisplayFormat(temporal)) == NULL){
+		printf("ERROR -> Marcador_dibujar(): No se pudo adaptar el texto renderizado a la pantalla\n");
+		exit(1);
+	}
+	
+	destino.w = superficie->w;
+	destino.h = superficie->h
+	
+	SDL_BlitSurface(superficie, NULL, pantalla, &destino);
+	
+	SDL_FreeSurface(temporal);
+	SDL_FreeSurface(superficie);
+	
+	/* Puntos del jugador 2 */
+	sprintf(buffer, "%d", marcador->puntos_j2);
+	
+	if((temporal = TTF_RenderUTF8_Solid(marcador->fuente, buffer, marcador->color)) == NULL){
+		printf("ERROR -> Marcador_dibujar(): No se pudo renderizar el texto\n");
+		exit(1);
+	}
 
-
+	if((superficie = SDL_DisplayFormat(temporal)) == NULL){
+		printf("ERROR -> Marcador_dibujar(): No se pudo adaptar el texto renderizado a la pantalla\n");
+		exit(1);
+	}
+	
+	destino.w = superficie->w;
+	destino.h = superficie->h
+	
+	SDL_BlitSurface(superficie, NULL, pantalla, &destino);
+	
+	SDL_FreeSurface(temporal);
+	SDL_FreeSurface(superficie);
+}

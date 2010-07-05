@@ -33,10 +33,17 @@ Pong Pong_crear(int jugador)
 
 void Pong_destruir(Pong pong)
 {
+	/* Liberamos la memoria ocupada por el Pong */
+	Imagen_borrar(pong->imagen);
 	free(pong);
 }
 
-void Pong_actualizar_entrada(Pong pong, Entrada entrada)
+void Pong_dibujar(Pong pong, SDL_Surface* pantalla)
+{
+	Imagen_dibujar(pong->imagen, pantalla, pong->x, pong->y);
+}
+
+void Pong_actualizar_entrada(Pong pong, Uint8* teclado)
 {
 	
 }
