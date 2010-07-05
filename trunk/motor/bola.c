@@ -57,6 +57,23 @@ SDL_Rect Bola_rectangulo_colision(Bola bola)
 	
 	return rectangulo;
 }
-	
+
+int Bola_consultar_velocidadx(Bola bola)
+{
+	return bola->x;
+}
+int Bola_consultar_velocidady(Bola bola)
+{
+	return bola->y;
+}
+void Bola_cambiar_velocidadx(Bola bola)
+{
+	bola->vx *= -1;
+}
+void Bola_cambiar_velocidady(Bola bola)
+{
+	bola->vy *= -1;
+}
+
 
 	
