@@ -34,6 +34,8 @@ typedef struct{
 	
 	Estructura que contiene los elementos del juego, los inicializa, destruye y controla el bucle principal.
 	
+	Se define como un puntero a tipoJuego (para no tener que manejar punteros en las funciones)
+	
 	La documentación de las funciones de este TAD en juego.h
 	
 	Ejemplo de uso:
