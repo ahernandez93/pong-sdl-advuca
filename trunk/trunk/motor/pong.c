@@ -2,6 +2,7 @@
 #include "stdlib.h"
 #include "pong.h"
 #include "imagen.h"
+#include "constantes.h"
 
 Pong Pong_crear(int jugador)
 {

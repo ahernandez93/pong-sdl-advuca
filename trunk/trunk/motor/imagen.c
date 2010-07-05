@@ -5,6 +5,7 @@
 #include "imagen.h"
 
 
+
 SDL_Surface* Imagen_cargar(const char* ruta)
 {
 	SDL_Surface* temporal;

@@ -3,6 +3,7 @@
 #include <string.h>
 #include "marcador.h"
 #include <SDL/SDL_ttf.h>
+#include "constantes.h"
 
 Marcador Marcador_crear(void)
 {

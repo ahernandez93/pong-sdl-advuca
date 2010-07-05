@@ -3,6 +3,7 @@
 #include <SDL/SDL.h>
 #include "bola.h"
 #include "imagen.h"
+#include "constantes.h"
 
 Bola Bola_crear(void)
 {
