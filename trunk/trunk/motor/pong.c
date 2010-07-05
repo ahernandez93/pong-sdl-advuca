@@ -14,19 +14,21 @@ Pong Pong_crear(int jugador)
 	}
 	
 	/* Cargamos la imagen del pong */
-	imagen Imagen_cargar("multimedia/pong.png");
+	pong->imagen = Imagen_cargar("multimedia/pong.png");
 	
 	/* Posicionamos al pong según el jugador que sea */
 	if(jugador == J1)
-		x = 15;
+		pong->x = 15;
 	else
-		x = PANTALLA_ANCHO - imagen->h - 15;
+		pong->x = PANTALLA_ANCHO - pong->imagen->h - 15;
 	
-	y = (PANTALLA_ALTO - imagen->h) / 2;
+	pong->y = (PANTALLA_ALTO - pong->imagen->h) / 2;
 	
 	/* Velocidad */
-	vx = 5;
-	vy = 5;
+	pong->vx = 5;
+	pong->vy = 5;
+	
+	return pong;
 }
 
 void Pong_destruir(Pong pong)
