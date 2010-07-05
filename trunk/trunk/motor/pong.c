@@ -19,9 +19,9 @@ Pong Pong_crear(int jugador)
 	
 	/* Posicionamos al pong según el jugador que sea */
 	if(jugador == J1)
-		pong->x = 15;
+		pong->x = 25;
 	else
-		pong->x = PANTALLA_ANCHO - pong->imagen->h - 15;
+		pong->x = PANTALLA_ANCHO - pong->imagen->w - 25;
 	
 	pong->y = (PANTALLA_ALTO - pong->imagen->h) / 2;
 	
@@ -46,13 +46,24 @@ void Pong_dibujar(Pong pong, SDL_Surface* pantalla)
 
 void Pong_actualizar_entrada(Pong pong, Uint8* teclado)
 {
+	/* Si pulsamos arriba nos movemos arriba */
+	if(teclado[SDLK_UP])
+		pong->y -= pong->vy;
+	/* Si pulsamos abajo nos movemos abajo */
+	else if(teclado[SDLK_DOWN])
+		pong->y += pong->vy;
 	
+	/* Controlamos no salirnos de los límites del campo */
+	if(pong->y < 0)
+		pong->y = 0;
+	else if(pong->y + pong->imagen->h > PANTALLA_ALTO)
+		pong->y = PANTALLA_ALTO - pong->imagen->h;
 }
 
-void Pong_actualizar_ia(Pong pong, IA ia)
+/*void Pong_actualizar_ia(Pong pong, IA ia)
 {
 	
-}
+}*/
 
 SDL_Rect Pong_rectangulo_colision(Pong pong)
 {

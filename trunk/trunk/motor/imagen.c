@@ -12,10 +12,12 @@ SDL_Surface* Imagen_cargar(const char* ruta)
 	SDL_Surface* imagen;
 	
 	/* Intentamos cargar la imagen */
-	if((temporal = IMG_Load(ruta)) == NULL){
+	if((imagen = IMG_Load(ruta)) == NULL){
 		printf("ERROR -> Imagen_cargar(): error al cargar la imagen %s\n", ruta);
 		exit(1);
 	}
+	
+	temporal = imagen;
 	
 	/* La adaptamos al formato de la pantalla con color transparente */
 	if((imagen = SDL_DisplayFormatAlpha(temporal)) == NULL){
@@ -36,7 +38,7 @@ void Imagen_dibujar(SDL_Surface* imagen, SDL_Surface* pantalla, int x, int y)
 	/* Establecemos las coordenadas de destino */
 	destino.x = x;
 	destino.y = y;
-	
+
 	/* Hacemos blitting */
 	SDL_BlitSurface(imagen, NULL, pantalla, &destino);
 }

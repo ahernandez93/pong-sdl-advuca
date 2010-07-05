@@ -2,7 +2,7 @@
 #define _JUEGO_
 
 #include "pong.h"
-#include "marchador.h"
+#include "marcador.h"
 #include "bola.h"
 
 typedef struct{
