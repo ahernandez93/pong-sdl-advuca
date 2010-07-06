@@ -10,4 +10,7 @@
 #define J1		1
 #define J2		2
 
+/* Colisión de rebote */
+#define NADA	0
+
 #endif
