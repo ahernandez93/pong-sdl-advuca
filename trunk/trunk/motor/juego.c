@@ -137,45 +137,52 @@ int Juego_comprobar_colisiones(Bola bola, Pong pong1, Pong pong2)
 	SDL_Rect rectangulo_pong1;
 	SDL_Rect rectangulo_pong2;
 	
-	//Obtenemos las dimensiones de la bola y el pong
+	/* Obtenemos las dimensiones de la bola y el pong */
 	rectangulo_bola = Bola_rectangulo_colision(bola);
 	rectangulo_pong1 = Pong_rectangulo_colision(pong2);
 	rectangulo_pong2 = Pong_rectangulo_colision(pong2);
 
-	//Comprobamos si hay colisión con el extremo superior e inferior
+	/* Comprobamos si hay colisión con el extremo superior e inferior */
 	if(rectangulo_bola.y <= 0 || (rectangulo_bola.y+rectangulo_bola.h) >= PANTALLA_ALTO){
-		Bola_cambiar_velocidady(bola);
+		Bola_invertir_velocidadY(bola);
 		return NADA;
 	}
 
-	//Comprobamos si hay colisión con el pong1
-	if(rectangulo_bola.x <= (rectangulo_pong1.x + rectangulo_pong1.w) &&
+	/* Comprobamos si hay colisión con el pong1 */
+	else if(rectangulo_bola.x <= (rectangulo_pong1.x + rectangulo_pong1.w) &&
 		rectangulo_bola.x >= rectangulo_pong1.x								&&
 		rectangulo_bola.y >= rectangulo_pong1.y 								&&
 		rectangulo_bola.y <= (rectangulo_pong1.y + rectangulo_pong1.h)){
 		
-			Bola_cambiar_velocidady(bola);
+			Bola_invertir_velocidadX(bola);
 			return NADA;
 		
 		}
 		
-	//Comprobamos si hay colisión con el pong2
-	if((rectangulo_bola.x + rectangulo_bola.w) >= rectangulo_pong2.x  &&
+	/* Comprobamos si hay colisión con el pong2 */
+	else if((rectangulo_bola.x + rectangulo_bola.w) >= rectangulo_pong2.x  &&
 		rectangulo_bola.x <= (rectangulo_pong2.x + rectangulo_pong2.w) &&
 		(rectangulo_bola.y + rectangulo_bola.h) >= rectangulo_pong2.y  &&
 		(rectangulo_bola.y + rectangulo_bola.h) <= (rectangulo_pong2.y + rectangulo_pong2.h)){
 		
-			Bola_cambiar_velocidady(bola);
+			Bola_invertir_velocidadX(bola);
 			return NADA;
 		
 		}
 
-	//Comprobamos si ha entrado en alguna de las dos porterías
-	if(rectangulo_bola.x <= 0){ //Gol del jugador 2
+	/* Comprobamos si ha entrado en alguna de las dos porterías */
+	else if(rectangulo_bola.x <= 0){ /* Gol del jugador 2 */
+		bola->x = 200;
+		bola->y = 300;
 		return J2;
 	}
-	if(rectangulo_bola.x >= PANTALLA_ANCHO){ //Gol del jugador 1
+	else if(rectangulo_bola.x >= PANTALLA_ANCHO){ /* Gol del jugador 1 */
+		bola->x = 200;
+		bola->y = 300;
 		return J1;
+	}
+	else{
+		return NADA;
 	}
 }
 
@@ -228,8 +235,8 @@ void Juego_bucle_principal(Juego juego)
 		SDL_Flip(juego->pantalla);
 			
 		/* Colisiones */
-		colision = Juego_comprobar_colisiones(juego->bola, juego->pong1,juego->pong2)
-		Juego_puntuar(jugador, juego->marcador);
+		colision = Juego_comprobar_colisiones(juego->bola, juego->pong1,juego->pong2);
+		Juego_puntuar(colision, juego->marcador);
 		
 		/* Procesamos la cola de eventos */
 		salir = Juego_procesar_eventos();
