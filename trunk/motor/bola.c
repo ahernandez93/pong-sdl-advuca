@@ -20,8 +20,8 @@ Bola Bola_crear(void)
 	bola->y = 300;
 	
 	/* Velocidad Inicial de la bola */
-	bola->vx = 10;
-	bola->vy = 10;
+	bola->vx = 1;
+	bola->vy = 1;
 	
 	/* Le asignamos una imagen a la bola */
 	bola->imagen = Imagen_cargar("multimedia/bola.png");
@@ -42,8 +42,8 @@ void Bola_dibujar(Bola bola, SDL_Surface* pantalla)
 
 void Bola_actualizar(Bola bola)
 {
-	/* bola->x += bola->vx; */
-	/* bola->y += bola->vy; */
+	bola->x += bola->vx;
+	bola->y += bola->vy;
 }
 	
 SDL_Rect Bola_rectangulo_colision(Bola bola)
@@ -58,19 +58,11 @@ SDL_Rect Bola_rectangulo_colision(Bola bola)
 	return rectangulo;
 }
 
-int Bola_consultar_velocidadx(Bola bola)
-{
-	return bola->x;
-}
-int Bola_consultar_velocidady(Bola bola)
-{
-	return bola->y;
-}
-void Bola_cambiar_velocidadx(Bola bola)
+void Bola_invertir_velocidadX(Bola bola)
 {
 	bola->vx *= -1;
 }
-void Bola_cambiar_velocidady(Bola bola)
+void Bola_invertir_velocidadY(Bola bola)
 {
 	bola->vy *= -1;
 }
