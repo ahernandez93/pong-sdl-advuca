@@ -26,8 +26,8 @@ Pong Pong_crear(int jugador)
 	pong->y = (PANTALLA_ALTO - pong->imagen->h) / 2;
 	
 	/* Velocidad */
-	pong->vx = 5;
-	pong->vy = 5;
+	pong->vx = 10;
+	pong->vy = 10;
 	
 	return pong;
 }
@@ -60,10 +60,25 @@ void Pong_actualizar_entrada(Pong pong, Uint8* teclado)
 		pong->y = PANTALLA_ALTO - pong->imagen->h;
 }
 
-/*void Pong_actualizar_ia(Pong pong, IA ia)
+void Pong_actualizar_ia(Pong pong, Bola bola)
 {
+	/* Si la bola está más arriba y va en nuestra dirección */
+	if(bola->y + 10 < pong->y + pong->imagen->h/2){
+		if((bola->x > pong->x && bola->vx < 0) || (bola->x < pong->x && bola->vx > 0))
+		pong->y -= pong->vy;
+	}
+	/* Si la bola está más abajo y va en nuestra dirección */
+	else if(bola->y - 10 > pong->y + pong->imagen->h/2){
+		if((bola->x > pong->x && bola->vx < 0) || (bola->x < pong->x && bola->vx > 0))
+			pong->y += pong->vy;
+	}
 	
-}*/
+	/* Controlamos no salirnos de los límites del campo */
+	if(pong->y < 0)
+		pong->y = 0;
+	else if(pong->y + pong->imagen->h > PANTALLA_ALTO)
+		pong->y = PANTALLA_ALTO - pong->imagen->h;
+}
 
 SDL_Rect Pong_rectangulo_colision(Pong pong)
 {

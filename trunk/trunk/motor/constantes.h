@@ -10,6 +10,9 @@
 /** Profundidad de color (bits per píxel) */
 #define BPP		32
 
+/** FPS, Frames per second (frames por segundo) */
+#define FPS		30
+
 /** Jugador 1 */
 #define J1		1
 

@@ -16,12 +16,12 @@ Bola Bola_crear(void)
 	}
 	
 	/* Posición inicial de la bola */
-	bola->x = 200;
-	bola->y = 300;
+	bola->x = 100;
+	bola->y = 200;
 	
 	/* Velocidad Inicial de la bola */
-	bola->vx = 1;
-	bola->vy = 1;
+	bola->vx = 5;
+	bola->vy = 5;
 	
 	/* Le asignamos una imagen a la bola */
 	bola->imagen = Imagen_cargar("multimedia/bola.png");

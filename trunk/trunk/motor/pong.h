@@ -2,6 +2,7 @@
 #define _PONG_
 
 #include "SDL/SDL.h"
+#include "bola.h"
 
 /**
 	@struct tipoPong
@@ -87,7 +88,7 @@ void Pong_actualizar_entrada(Pong pong, Uint8* teclado);
 	
 	Actualiza la posición de la pala utilizando funciones de Inteligencia Artificial
 */
-void Pong_actualizar_ia(Pong pong);
+void Pong_actualizar_ia(Pong pong, Bola bola);
 
 /**
 	@param pong pala de la que se quiere saber su área de colisión
