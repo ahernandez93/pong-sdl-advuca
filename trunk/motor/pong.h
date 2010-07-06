@@ -37,7 +37,7 @@ typedef struct{
 	\code
 		Pong pong;
 		
-		pong = Pong_Crear(J1);
+		pong = Pong_crear(J1);
 		
 		while(!salir){
 			...
