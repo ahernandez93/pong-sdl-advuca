@@ -86,6 +86,18 @@ int Juego_procesar_eventos(void)
 	return salir;	
 }
 
+Juego Juego_control_tiempo(Juego juego)
+{	
+	/* Tiempo del último frame = Tiempo total - Tiempo de frames anteriores */
+	juego->tiempo1 = SDL_GetTicks();
+	
+	/* Esperamos lo que nos falta para mantener 15fps */
+	if((juego->tiempo1 - juego->tiempo0) < (1000 / FPS))	
+		SDL_Delay((1000 / FPS) - (juego->tiempo1 - juego->tiempo0));
+		
+	juego->tiempo0 = juego->tiempo1;
+}
+
 Juego Juego_crear(void)
 {
 	Juego juego;
@@ -112,6 +124,9 @@ Juego Juego_crear(void)
 	/* Inicializamos el teclado */
 	juego->teclado = SDL_GetKeyState(NULL);
 	
+	/* Inicio del control de tiempo */
+	juego->tiempo0 = 0;
+	
 	return juego;
 }
 
@@ -131,6 +146,18 @@ void Juego_destruir(Juego juego)
 	free(juego);
 }
 
+int Juego_colisiones_rectangulo(SDL_Rect rect1, SDL_Rect rect2)
+{
+	if(((rect1.x + rect1.w) > rect2.x) &&
+	   ((rect1.y + rect1.h) > rect2.y) &&
+	   ((rect2.x + rect2.w) > rect1.x) &&
+	   ((rect2.y + rect2.h) > rect1.y))
+		return 1;
+	else
+		return 0;
+		
+}
+
 int Juego_comprobar_colisiones(Bola bola, Pong pong1, Pong pong2)
 {
 	SDL_Rect rectangulo_bola;
@@ -139,7 +166,7 @@ int Juego_comprobar_colisiones(Bola bola, Pong pong1, Pong pong2)
 	
 	/* Obtenemos las dimensiones de la bola y el pong */
 	rectangulo_bola = Bola_rectangulo_colision(bola);
-	rectangulo_pong1 = Pong_rectangulo_colision(pong2);
+	rectangulo_pong1 = Pong_rectangulo_colision(pong1);
 	rectangulo_pong2 = Pong_rectangulo_colision(pong2);
 
 	/* Comprobamos si hay colisión con el extremo superior e inferior */
@@ -149,36 +176,27 @@ int Juego_comprobar_colisiones(Bola bola, Pong pong1, Pong pong2)
 	}
 
 	/* Comprobamos si hay colisión con el pong1 */
-	else if(rectangulo_bola.x <= (rectangulo_pong1.x + rectangulo_pong1.w) &&
-		rectangulo_bola.x >= rectangulo_pong1.x								&&
-		rectangulo_bola.y >= rectangulo_pong1.y 								&&
-		rectangulo_bola.y <= (rectangulo_pong1.y + rectangulo_pong1.h)){
-		
+	else if(Juego_colisiones_rectangulo(rectangulo_bola, rectangulo_pong1)){
 			Bola_invertir_velocidadX(bola);
 			return NADA;
-		
-		}
+	}
 		
 	/* Comprobamos si hay colisión con el pong2 */
-	else if((rectangulo_bola.x + rectangulo_bola.w) >= rectangulo_pong2.x  &&
-		rectangulo_bola.x <= (rectangulo_pong2.x + rectangulo_pong2.w) &&
-		(rectangulo_bola.y + rectangulo_bola.h) >= rectangulo_pong2.y  &&
-		(rectangulo_bola.y + rectangulo_bola.h) <= (rectangulo_pong2.y + rectangulo_pong2.h)){
-		
+	else if(Juego_colisiones_rectangulo(rectangulo_bola, rectangulo_pong2)){
 			Bola_invertir_velocidadX(bola);
 			return NADA;
-		
-		}
+	}
 
 	/* Comprobamos si ha entrado en alguna de las dos porterías */
 	else if(rectangulo_bola.x <= 0){ /* Gol del jugador 2 */
-		bola->x = 200;
-		bola->y = 300;
+		bola->x = 100;
+		bola->y = 200;
+		bola->vx = 5;
 		return J2;
 	}
-	else if(rectangulo_bola.x >= PANTALLA_ANCHO){ /* Gol del jugador 1 */
-		bola->x = 200;
-		bola->y = 300;
+	else if(rectangulo_bola.x + rectangulo_bola.w >= PANTALLA_ANCHO){ /* Gol del jugador 1 */
+		bola->x = 100;
+		bola->y = 200;
 		return J1;
 	}
 	else{
@@ -207,7 +225,7 @@ void Juego_bucle_principal(Juego juego)
 		Pong_actualizar_entrada(juego->pong1, juego->teclado);
 			
 		/* Actualizar pong de J2 según IA */
-		/* Pong_actualizar_ia(juego->pong2);*/
+		Pong_actualizar_ia(juego->pong2, juego->bola);
 			
 		/* Actualizar Bola */
 		Bola_actualizar(juego->bola);
@@ -242,6 +260,6 @@ void Juego_bucle_principal(Juego juego)
 		salir = Juego_procesar_eventos();
 		
 		/* Control de tiempo */
-						
+		Juego_control_tiempo(juego);
 	}
 }

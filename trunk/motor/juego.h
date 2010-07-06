@@ -25,6 +25,10 @@ typedef struct{
 	SDL_Surface* pantalla;
 	/** Estado del teclado */
 	Uint8* teclado;
+	/** Control de tiempo */
+	int tiempo0;
+	/** Control de tiempo */
+	int tiempo1;
 }tipoJuego;
 
 /**
