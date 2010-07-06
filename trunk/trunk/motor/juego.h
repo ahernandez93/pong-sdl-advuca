@@ -70,6 +70,24 @@ Juego Juego_crear(void);
 void Juego_destruir(Juego juego);
 
 /**
+	@param 
+	
+	@return
+	
+	Comprueba si se han producido colisiones y las trata las de rebote
+*/
+
+int Juego_comprobar_colisiones(Bola bola, Pong pong1, Pong pong2);
+
+/**
+	@param 
+	
+	Aumenta la puntuación del jugador que mete gol
+*/
+
+void Juego_puntuar(int jugador, Marcador marcador);
+
+/**
 	@param juego juego inicializado sobre el que ejecutar el bucle principal
 	
 	Ejecuta el bucle principal de juego
