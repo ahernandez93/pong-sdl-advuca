@@ -14,14 +14,19 @@ Pong Pong_crear(int jugador)
 		exit(1);
 	}
 	
-	/* Cargamos la imagen del pong */
-	pong->imagen = Imagen_cargar("multimedia/pong.png");
-	
 	/* Posicionamos al pong según el jugador que sea */
 	if(jugador == J1)
+	{
+		/* Cargamos la imagen del pong */
+		pong->imagen = Imagen_cargar("multimedia/pong.png");
 		pong->x = 25;
+	}
 	else
+	{
+		/* Cargamos la imagen del pong */
+		pong->imagen = Imagen_cargar("multimedia/pong2.png");
 		pong->x = PANTALLA_ANCHO - pong->imagen->w - 25;
+	}
 	
 	pong->y = (PANTALLA_ALTO - pong->imagen->h) / 2;
 	
