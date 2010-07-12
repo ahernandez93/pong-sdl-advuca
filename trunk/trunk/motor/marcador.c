@@ -29,10 +29,10 @@ Marcador Marcador_crear(void)
 		exit(1);
 	}
 	
-	/* Le indicamos el color de la fuente (negro) */
-	marcador->color.r = 0;
-	marcador->color.g = 0;
-	marcador->color.b = 0;
+	/* Le indicamos el color de la fuente (blanco) */
+	marcador->color.r = 255;
+	marcador->color.g = 255;
+	marcador->color.b = 255;
 	
 	return marcador;
 }
