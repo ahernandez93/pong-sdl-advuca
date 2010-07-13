@@ -10,10 +10,10 @@
 	@brief Estructura del marcador, se utiliza Marcador
 */
 typedef struct{
-	/** Puntos del jugador 1 */
-	int puntos_j1;
-	/** Puntos del jugador 2 */
-	int puntos_j2;
+	/** Puntos actuales */
+	int p_actuales;
+	/** Puntos récord*/
+	int p_record;
 	/** Posición x del marcador */
 	int x;
 	/** Posición y del marcador */
@@ -60,7 +60,7 @@ typedef struct{
 typedef tipoMarcador* Marcador;
 
 /**
-	@return marcador creado e inicializado con los puntos de los dos jugadores a 0
+	@return marcador creado e inicializado con los puntos y el récord a 0
 */
 Marcador Marcador_crear(void);
 
@@ -81,9 +81,17 @@ void Marcador_dibujar(Marcador marcador, SDL_Surface* pantalla);
 
 /**
 	@param marcador marcador a modificar
-	@param jugador J1 o J2, incrementa en 1 los puntos del jugador indicado
+	
+	Incrementa los puntos del jugador y actualiza el récord
 */
-void Marcador_incrementar(Marcador marcador, int jugador);
+void Marcador_incrementar(Marcador marcador);
+
+/**
+	@param marcador marcador a modificar
+	
+	Pone los puntos actuales a 0 manteniendo el récord
+*/
+void Marcador_reiniciar(Marcador marcador);
 
 
 

@@ -76,12 +76,10 @@ void Juego_destruir(Juego juego);
 /**
 	@param 
 	
-	@return
-	
 	Comprueba si se han producido colisiones y las trata las de rebote
 */
 
-int Juego_comprobar_colisiones(Bola bola, Pong pong1, Pong pong2);
+void Juego_comprobar_colisiones(Bola bola, Pong pong1, Pong pong2, Marcador marcador);
 
 /**
 	@param 
