@@ -15,13 +15,13 @@ Marcador Marcador_crear(void)
 		exit(1);	
 	}
 	
-	/* Posición inicial de la bola */
-	marcador->x = 150;
+	/* Posición del marcador */
+	marcador->x = 75;
 	marcador->y = 25;
 
 	/* Valor inicial del marcador para cada jugador */
-	marcador->puntos_j1 = 0;
-	marcador->puntos_j2 = 0;
+	marcador->p_actuales = 0;
+	marcador->p_record = 0;
 	
 	/* Le asignamos una fuente */
 	if((marcador->fuente = TTF_OpenFont("multimedia/marcador.ttf", 30)) == NULL){
@@ -46,23 +46,28 @@ void Marcador_destruir(Marcador marcador)
 	free(marcador);
 }
 
-void Marcador_incrementar(Marcador marcador, int jugador)
+void Marcador_incrementar(Marcador marcador)
 {
-	if(jugador == J1)
-		marcador->puntos_j1++;
-	else
-		marcador->puntos_j2++;
+	marcador->p_actuales++;
+	
+	if(marcador->p_actuales > marcador->p_record)
+		marcador->p_record = marcador->p_actuales;
+}
+
+void Marcador_reiniciar(Marcador marcador)
+{
+	marcador->p_actuales = 0;
 }
 
 void Marcador_dibujar(Marcador marcador, SDL_Surface* pantalla)
 {
-	char buffer[20];
+	char buffer[30];
 	SDL_Surface* temporal;
 	SDL_Surface* superficie;
 	SDL_Rect destino;
 	
 	/* Puntos del jugador 1 */
-	sprintf(buffer, "%d", marcador->puntos_j1);
+	sprintf(buffer, "Actuales: %d", marcador->p_actuales);
 	
 	if((temporal = TTF_RenderUTF8_Solid(marcador->fuente, buffer, marcador->color)) == NULL){
 		printf("ERROR -> Marcador_dibujar(): No se pudo renderizar el texto\n");
@@ -85,7 +90,7 @@ void Marcador_dibujar(Marcador marcador, SDL_Surface* pantalla)
 	SDL_FreeSurface(superficie);
 	
 	/* Puntos del jugador 2 */
-	sprintf(buffer, "%d", marcador->puntos_j2);
+	sprintf(buffer, "Récord: %d", marcador->p_record);
 	
 	if((temporal = TTF_RenderUTF8_Solid(marcador->fuente, buffer, marcador->color)) == NULL){
 		printf("ERROR -> Marcador_dibujar(): No se pudo renderizar el texto\n");

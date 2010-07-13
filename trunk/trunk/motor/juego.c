@@ -86,7 +86,7 @@ int Juego_procesar_eventos(void)
 	return salir;	
 }
 
-Juego Juego_control_tiempo(Juego juego)
+void Juego_control_tiempo(Juego juego)
 {	
 	/* Tiempo del último frame = Tiempo total - Tiempo de frames anteriores */
 	juego->tiempo1 = SDL_GetTicks();
@@ -158,7 +158,7 @@ int Juego_colisiones_rectangulo(SDL_Rect rect1, SDL_Rect rect2)
 		
 }
 
-int Juego_comprobar_colisiones(Bola bola, Pong pong1, Pong pong2)
+void Juego_comprobar_colisiones(Bola bola, Pong pong1, Pong pong2, Marcador marcador)
 {
 	SDL_Rect rectangulo_bola;
 	SDL_Rect rectangulo_pong1;
@@ -172,19 +172,17 @@ int Juego_comprobar_colisiones(Bola bola, Pong pong1, Pong pong2)
 	/* Comprobamos si hay colisión con el extremo superior e inferior */
 	if(rectangulo_bola.y <= 0 || (rectangulo_bola.y+rectangulo_bola.h) >= PANTALLA_ALTO){
 		Bola_invertir_velocidadY(bola);
-		return NADA;
 	}
 
 	/* Comprobamos si hay colisión con el pong1 */
 	else if(Juego_colisiones_rectangulo(rectangulo_bola, rectangulo_pong1)){
 			Bola_invertir_velocidadX(bola);
-			return NADA;
+			Marcador_incrementar(marcador);
 	}
 		
 	/* Comprobamos si hay colisión con el pong2 */
 	else if(Juego_colisiones_rectangulo(rectangulo_bola, rectangulo_pong2)){
 			Bola_invertir_velocidadX(bola);
-			return NADA;
 	}
 
 	/* Comprobamos si ha entrado en alguna de las dos porterías */
@@ -192,29 +190,17 @@ int Juego_comprobar_colisiones(Bola bola, Pong pong1, Pong pong2)
 		bola->x = 100;
 		bola->y = 200;
 		bola->vx = 5;
-		return J2;
+		Marcador_reiniciar(marcador);
 	}
 	else if(rectangulo_bola.x + rectangulo_bola.w >= PANTALLA_ANCHO){ /* Gol del jugador 1 */
 		bola->x = 100;
 		bola->y = 200;
-		return J1;
-	}
-	else{
-		return NADA;
-	}
-}
-
-void Juego_puntuar(int jugador, Marcador marcador)
-{
-	if(jugador != NADA)
-	{
-		Marcador_incrementar(marcador, jugador);
 	}
 }
 
 void Juego_bucle_principal(Juego juego)
 {
-	int salir = 0, colision;
+	int salir = 0;
 	
 	/* Mientras no queramos salir */
 	while(!salir){
@@ -238,8 +224,7 @@ void Juego_bucle_principal(Juego juego)
 			
 		/* Dibujar J1 */
 		Pong_dibujar(juego->pong1, juego->pantalla);
-
-			
+	
 		/* Dibujar J2 */
 		Pong_dibujar(juego->pong2, juego->pantalla);
 			
@@ -253,8 +238,7 @@ void Juego_bucle_principal(Juego juego)
 		SDL_Flip(juego->pantalla);
 			
 		/* Colisiones */
-		colision = Juego_comprobar_colisiones(juego->bola, juego->pong1,juego->pong2);
-		Juego_puntuar(colision, juego->marcador);
+		Juego_comprobar_colisiones(juego->bola, juego->pong1,juego->pong2, juego->marcador);
 		
 		/* Procesamos la cola de eventos */
 		salir = Juego_procesar_eventos();
