@@ -112,6 +112,9 @@ Juego Juego_crear(void)
 void Juego_destruir(Juego juego)
 {	
 	/* Destuimos todos los elementos del juego */
+	Pong_destruir(juego->pong1);
+	Pong_destruir(juego->pong2);
+	Bola_destruir(juego->bola);
 	Imagen_borrar(juego->mesa);
 	
 	/* Cerramos SDL */

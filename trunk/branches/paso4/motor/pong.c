@@ -66,15 +66,3 @@ void Pong_actualizar_entrada(Pong pong, Uint8* teclado)
 		pong->y = PANTALLA_ALTO - pong->imagen->h;
 }
 
-
-SDL_Rect Pong_rectangulo_colision(Pong pong)
-{
-	SDL_Rect rectangulo;
-	
-	rectangulo.x = pong->x;
-	rectangulo.y = pong->y;
-	rectangulo.w = pong->imagen->w;
-	rectangulo.h = pong->imagen->h;
-	
-	return rectangulo;
-}
