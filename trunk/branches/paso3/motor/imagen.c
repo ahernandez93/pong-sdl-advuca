@@ -1,9 +1,10 @@
-#include "stdio.h"
-#include "stdlib.h"
-#include "SDL/SDL.h"
-#include "SDL/SDL_image.h"
-#include "imagen.h"
+#include <stdio.h>
+#include <stdlib.h>
 
+#include <SDL/SDL.h>
+#include <SDL/SDL_image.h>
+
+#include "imagen.h"
 
 
 SDL_Surface* Imagen_cargar(const char* ruta)
