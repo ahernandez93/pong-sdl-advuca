@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 #include <SDL/SDL.h>
+
 #include "bola.h"
 #include "imagen.h"
 #include "constantes.h"
