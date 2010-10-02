@@ -1,7 +1,7 @@
 #ifndef _IMAGEN_
 #define _IMAGEN_
 
-#include "SDL/SDL.h"
+#include <SDL/SDL.h>
 
 /**
 	@param ruta Ruta con la imagen a cargar

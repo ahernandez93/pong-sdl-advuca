@@ -1,10 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 #include <SDL/SDL_ttf.h>
 #include <SDL/SDL_mixer.h>
+
 #include "imagen.h"
 #include "juego.h"
 #include "pong.h"
@@ -60,10 +62,13 @@ SDL_Surface *Juego_iniciar_SDL(void){
 	return auxiliar;
 }
 
-int Juego_procesar_eventos(void)
+int Juego_procesar_eventos(Juego juego)
 {
 	SDL_Event event;
 	int salir = 0;
+	
+	/* Actualizar entrada */
+	juego->teclado = SDL_GetKeyState(NULL);
 	
 	/* Mientras queden eventos en la cola de eventos */
 	while(SDL_PollEvent(&event)){
@@ -204,9 +209,10 @@ void Juego_bucle_principal(Juego juego)
 	
 	/* Mientras no queramos salir */
 	while(!salir){
-		/* Actualizar entrada */
-		juego->teclado = SDL_GetKeyState(NULL);
-		
+
+		/* Actualizamos la entrada y procesamos la cola de eventos */
+		salir = Juego_procesar_eventos(juego);
+
 		/* Actualizar pong de J1 según entrada */ 
 		Pong_actualizar_entrada(juego->pong1, juego->teclado);
 			
@@ -215,6 +221,9 @@ void Juego_bucle_principal(Juego juego)
 			
 		/* Actualizar Bola */
 		Bola_actualizar(juego->bola);
+		
+		/* Colisiones */
+		Juego_comprobar_colisiones(juego->bola, juego->pong1,juego->pong2, juego->marcador);
 		
 		/* Borramos la pantalla */
 		SDL_FillRect(juego->pantalla, NULL, SDL_MapRGB(juego->pantalla->format, 0, 0, 0));
@@ -236,12 +245,6 @@ void Juego_bucle_principal(Juego juego)
 		
 		/* Flipping, intercambio de superficies (mostramos la pantalla) */
 		SDL_Flip(juego->pantalla);
-			
-		/* Colisiones */
-		Juego_comprobar_colisiones(juego->bola, juego->pong1,juego->pong2, juego->marcador);
-		
-		/* Procesamos la cola de eventos */
-		salir = Juego_procesar_eventos();
 		
 		/* Control de tiempo */
 		Juego_control_tiempo(juego);
