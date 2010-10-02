@@ -82,10 +82,4 @@ void Pong_dibujar(Pong pong, SDL_Surface* pantalla);
 */
 void Pong_actualizar_entrada(Pong pong, Uint8* teclado);
 
-/**
-	@param pong pala de la que se quiere saber su área de colisión
-	@return área de colisión de la pala
-*/
-SDL_Rect Pong_rectangulo_colision(Pong pong);
-
 #endif
