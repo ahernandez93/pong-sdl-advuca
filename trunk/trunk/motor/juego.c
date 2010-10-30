@@ -49,15 +49,6 @@ SDL_Surface *Juego_iniciar_SDL(void){
 	
 	/* Al salir, cerramos SDL TTF */
 	atexit(TTF_Quit);
-	
-	/* Inicializamos SDL Mixer */
-	if(Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT,MIX_DEFAULT_CHANNELS, 4096) < 0){
-		printf("ERROR -> Juego_iniciar_SDL(): no se pudo iniciar SDL Mixer\n");
-		exit(1);
-	}
-	
-	/* Al salir, cerramos SDL Mixer */
-	atexit(Mix_CloseAudio);
 
 	return auxiliar;
 }
@@ -96,7 +87,7 @@ void Juego_control_tiempo(Juego juego)
 	/* Tiempo del último frame = Tiempo total - Tiempo de frames anteriores */
 	juego->tiempo1 = SDL_GetTicks();
 	
-	/* Esperamos lo que nos falta para mantener 15fps */
+	/* Esperamos lo que nos falta para mantener 25 fps */
 	if((juego->tiempo1 - juego->tiempo0) < (1000 / FPS))	
 		SDL_Delay((1000 / FPS) - (juego->tiempo1 - juego->tiempo0));
 		

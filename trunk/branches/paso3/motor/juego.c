@@ -126,7 +126,7 @@ void Juego_control_tiempo(Juego juego)
 	/* Tiempo del último frame = Tiempo total - Tiempo de frames anteriores */
 	juego->tiempo1 = SDL_GetTicks();
 	
-	/* Esperamos lo que nos falta para mantener 15fps */
+	/* Esperamos lo que nos falta para mantener 25 fps */
 	if((juego->tiempo1 - juego->tiempo0) < (1000 / FPS))	
 		SDL_Delay((1000 / FPS) - (juego->tiempo1 - juego->tiempo0));
 		
