@@ -208,21 +208,143 @@
 	\frametitle{Game Loop}
 	
 	\begin{center}
-		Todos los juegos siguen la siguiente estructura, \textbf{\emph{Game Loop}}:
+		Todos los juegos siguen esta estructura, \textbf{\emph{Game Loop}}:
 	\end{center}	
 	
+	\begin{columns}
+	
+	\column{150pt}
 	\begin{center}
 		\includegraphics[scale=0.25]{img/gameloop.png}
 	\end{center}	
+	
+	\column{150pt}
+	\begin{alertblock}{Frames y movimiento}
+		\begin{itemize}
+			\item \emph{Actualizar}: los elementos reaccionan a su entorno y al usuario.
+			\item \emph{Dibujar}: la escena se dibuja en pantalla.
+			\item Si cada segundo se producen 25 iteraciones (25fps), tendremos sensación de movimiento.
+		\end{itemize}            
+	\end{alertblock}
+	
+	\end{columns}
 \end{frame}
 
-\subsection{Inicialización}
+\begin{frame}
+	\frametitle{Game Loop - Inicialización}
+	
+	Durante la etapa de inicialización se llevan a cabo las siguientes
+	tareas:
+	
+	\begin{columns}[c]
+	\column{200pt}
+		
+	\begin{block}{Pasos}
+		\begin{itemize}
+			\item Inicializar el motor y las librerías que usemos
+			\item Cargar ficheros de configuración
+			\item Dejar todo listo para empezar a trabajar
+		\end{itemize}            
+	\end{block}
+	
+	\column{100pt}
+	
+	\begin{center}
+		\includegraphics[scale=0.25]{img/engine.png}
+	\end{center}	
+	
+	\end{columns}
+	
+\end{frame}
 
-\subsection{Actualizar}
+\begin{frame}
+	\frametitle{Game Loop - Actualizar}
+	
+	Cada vez que actualizamos tenemos en cuenta:
+	
+	\begin{columns}[c]
+	\column{175pt}
+		
+	\begin{block}{Actualizar}
+		\begin{itemize}
+			\item Entrada del usuario
+			\item Red
+			\item Movimiento y acciones del/los personaje/s
+			\item Movimiento y acciones del/los enemigo/s, IA
+			\item Colisiones, física
+			\item Eventos aleatorios o asíncronos
+		\end{itemize}            
+	\end{block}
+	
+	\column{125pt}
+	
+	\begin{center}
+		\includegraphics[scale=0.25]{img/grannycolision.png}
+	\end{center}	
+	
+	\end{columns}
+	
+\end{frame}
 
-\subsection{Dibujar}
+\begin{frame}
+	\frametitle{Game Loop - Dibujar}
+	
+	La fase de dibujado en un juego 2D:
+	
+	\begin{columns}[c]
+	\column{175pt}
+		
+	\begin{block}{Dibujar}
+		\begin{itemize}
+			\item Dibujamos por capas, como The Gimp o Photoshop
+			\item Componemos la escena por piezas
+			\item Suele hacerse por orden
+			\item Algunas librerías permiten z-order
+		\end{itemize}            
+	\end{block}
+	
+	\column{125pt}
+	
+	\begin{center}
+		\includegraphics[scale=0.4]{img/pantalla.png}
+		
+		\includegraphics[scale=0.4]{img/elementos.png}
+		
+		\includegraphics[scale=0.4]{img/composicion.png}
+	\end{center}	
+	
+	\end{columns}
+	
+\end{frame}
 
-\subsection{Cierre}
+\begin{frame}
+	\frametitle{Game Loop - Cierre}
+	
+	¡Hay que recoger antes de salir!
+	
+	\begin{columns}[c]
+	\column{175pt}
+		
+	\begin{block}{Cierre}
+		\begin{itemize}
+			\item Destruir todos los elementos del juego
+			\item Cerrar las librerías en uso
+		\end{itemize}            
+	\end{block}
+	
+	\column{125pt}
+	
+	\begin{center}
+		\includegraphics[scale=0.25]{img/tidy.jpg}
+	\end{center}	
+	
+	\end{columns}
+	
+	\begin{center}
+	    ¡Los descuidos de memoria son muy peligrosos!
+	\end{center}
+	
+\end{frame}
 
 \section{Pong}
 
