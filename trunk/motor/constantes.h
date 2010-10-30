@@ -11,7 +11,7 @@
 #define BPP		32
 
 /** FPS, Frames per second (frames por segundo) */
-#define FPS		30
+#define FPS		25
 
 /** Jugador 1 */
 #define J1		1

@@ -35,7 +35,7 @@ SDL_Surface *Juego_iniciar_SDL(void){
 	}
 	
 	/* Establecemos el título de la ventana */
-	SDL_WM_SetCaption("Pong - ADVUCA - Paso 4", NULL);
+	SDL_WM_SetCaption("Pong - ADVUCA - Paso 5", NULL);
 	
 	/* Hacemos el cursor invisible */
 	SDL_ShowCursor(SDL_DISABLE);
@@ -129,7 +129,7 @@ void Juego_control_tiempo(Juego juego)
 	/* Tiempo del último frame = Tiempo total - Tiempo de frames anteriores */
 	juego->tiempo1 = SDL_GetTicks();
 	
-	/* Esperamos lo que nos falta para mantener 15fps */
+	/* Esperamos lo que nos falta para mantener 25 fps */
 	if((juego->tiempo1 - juego->tiempo0) < (1000 / FPS))	
 		SDL_Delay((1000 / FPS) - (juego->tiempo1 - juego->tiempo0));
 		
