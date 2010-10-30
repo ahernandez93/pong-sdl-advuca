@@ -8,10 +8,21 @@
 \usepackage{listings}
 
 \usetheme{Darmstadt}
+\usefonttheme{structuresmallcapsserif} 
+
 
 \title{Desarrollo de un Pong en C con SDL}
-\author{David Saltares Márquez\\Alberto Cejas Sánchez}
+\author{David Saltares Márquez \and Alberto Cejas Sánchez}
 
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Índice}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+
+}
 
 \begin{document}
 
@@ -39,7 +50,7 @@
     
     \begin{center}
         \begin{alertblock}{¡Es un acrónimo!}
-            \emph{ADVUCA} \rightarrow Asociación de Desarrollo de Videojuegos de la UCA
+            \emph{ADVUCA} $\rightarrow$ Asociación de Desarrollo de Videojuegos de la UCA
         \end{alertblock}        
     \end{center}
     
@@ -59,20 +70,167 @@
 			\includegraphics[scale=0.2]{img/advuca.png}
 		\end{center}
 	\end{columns} 
-
 \end{frame}
 
-\section{Introducción}
+	
+\begin{frame}
+	\frametitle{Nuestros objetivos}
+	
+	\begin{columns}[c]
+		\column{75pt}
+		\begin{center}
+			\includegraphics[scale=0.3]{img/link.png}
+		\end{center}
+		\column{225pt}
+		
+		\begin{center}
+			Este taller es sólo el principio
+		\end{center}		
+		
+		\begin{block}{Pretendemos}
+            \begin{itemize}
+                \item Formar grupos de desarrollo de videojuegos
+				\item Ofrecer documentación sobre creación de videojuegos
+				\item Colaborar con asignaturas de la carrera
+				\item Trabajo con grupos interdisciplinares (programación, grafismo, sonido...)
+				\item ¡Divertirnos!
+            \end{itemize}            
+        \end{block}        
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Inscríbete}
+	
+	\begin{columns}[c]
+		\column{150pt}
+		\begin{block}{Sólo necesitas}
+            \begin{itemize}
+                \item Matrícula de la UCA
+				\item Datos personales
+				\item ¡Muchas ganas de aprender!
+            \end{itemize}            
+        \end{block}        
+		\column{150pt}
+		\begin{center}
+			\includegraphics[scale=0.22]{img/iwantyou.jpg}
+		\end{center}
+	\end{columns} 
+	
+\end{frame}
+
+%	======= DISEÑO DE VIDEOJUEGOS =======
 
 \section{Diseño de Videojuegos}
 
-\section{Diseñando nuestro Pong}
+\begin{frame}
+	\frametitle{El equipo}
+	
+	Puede que tus primeros juegos los desarrolles de forma individual
+	pero los equipos suelen componerse de:
+		
+	\begin{columns}[c]
+	\column{200pt}	
+	
+	\begin{block}{Componentes de un equipo}
+		\begin{itemize}
+			\item Diseñadores
+			\item Ingenieros y programadores
+			\item Artistas 2D
+			\item Artistas 3D
+			\item Sonido
+			\item Otro equipo: soporte, marketing etc.
+		\end{itemize}            
+	\end{block}
+	
+	\column{100pt}
+	\begin{center}
+	    \includegraphics[scale=0.3]{img/collaborate.jpg}
+	\end{center}
+	
+	
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\frametitle{El proceso}
+	
+	Aunque te de una pereza tremenda deberías mantener una mínima
+	disciplina o tu proyecto se quedará en una ¿buena? idea.
+		
+	\begin{block}{Pasos}
+		\begin{itemize}
+			\item Definir el juego (tipo, jugabilidad, personajes...)
+			\item Ingeniería del Software (¿acaso creías que no valía para nada?)
+			\item Implementación
+			\item Documentación (¡no lo dejes para el final!)
+			\item Muchas pruebas
+			\item Lanzamiento
+		\end{itemize}            
+	\end{block}        
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{¡Importante!}
+	
+	\begin{center}
+		Recuerda, no creas que tu primeros proyectos serán algo así:
+	\end{center}	
+	
+	\begin{center}
+		\includegraphics[scale=0.2]{img/codmw2.jpg}
+	\end{center}	
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Probablemente sean así}
+	\begin{columns}[c]
+	\column{150pt}	
+	\begin{center}
+	    \includegraphics[scale=0.15]{img/robinson.png}
+
+	    \includegraphics[scale=0.13]{img/spacepenguin.png}
+	\end{center}
+	
+	\column{150pt}
+	\begin{center}
+	    \includegraphics[scale=0.15]{img/grannysbloodbath.png}
+    
+	    \includegraphics[scale=0.15]{img/magicduel.png}
+	\end{center}
+	
+	\end{columns}
+		
+\end{frame}
+\begin{frame}
+	\frametitle{Game Loop}
+	
+	\begin{center}
+		Todos los juegos siguen la siguiente estructura, \textbf{\emph{Game Loop}}:
+	\end{center}	
+	
+	\begin{center}
+		\includegraphics[scale=0.25]{img/gameloop.png}
+	\end{center}	
+\end{frame}
+
+\subsection{Inicialización}
+
+\subsection{Actualizar}
+
+\subsection{Dibujar}
+
+\subsection{Cierre}
+
+\section{Pong}
 
 \section{SDL}
 
 \section{Implementación}
 
-\section{Ampliando el Pong}
+\section{Ampliando}
 
 \section{¿Y ahora qué?}
 
