@@ -268,6 +268,112 @@ if(teclado[SDLK_UP])
 
 \end{frame}
 
+\begin{frame}[fragile]
+    \frametitle{Pong - Paso 2 - IMG\_Load}
+	
+\begin{verbatim}
+SDL_Surface *IMG_Load(const char *file);
+\end{verbatim}
+
+    \begin{block}{IMG\_Load}
+	Carga una imagen
+	
+	\emph{Parámetros}:
+	\begin{itemize}
+	    \item const char *file: ruta de la imagen a cargar
+	\end{itemize}
+	
+	\emph{Devuelve}: superficie con la imagen cargada, NULL si falla
+    \end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Pong - Paso 2 - SDL\_DisplayFormatAlpha}
+	
+\begin{verbatim}
+SDL_Surface *SDL_DisplayFormatAlpha(SDL_Surface *surface);
+\end{verbatim}
+
+    \begin{block}{SDL\_DisplayFormatAlpha}
+	Adapta una superficie con transparencia al formato de la pantalla
+	
+	\emph{Parámetros}:
+	\begin{itemize}
+	    \item SDL\_Surface *surface: superficie a adaptar
+	\end{itemize}
+	
+	\emph{Devuelve}: superficie con la imagen adaptada, NULL si falla
+    \end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Pong - Paso 2 - SDL\_FreeSurface}
+	
+\begin{verbatim}
+void SDL_FreeSurface(SDL_Surface *surface);
+\end{verbatim}
+
+    \begin{block}{SDL\_FreeSurface}
+	Libera la memoria ocupada por la superficie
+	
+	\emph{Parámetros}:
+	\begin{itemize}
+	    \item SDL\_Surface *surface: superficie a eliminar
+	\end{itemize}
+    \end{block}
+    
+    \begin{center}
+    \textbf{¡No se usa \emph{free(surface);} !}
+    \end{center}
+
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Pong - Paso 2 - SDL\_BlitSurface}
+	
+\begin{verbatim}
+int SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect,
+                    SDL_Surface *dst, SDL_Rect *dstrect);
+\end{verbatim}
+
+    \begin{block}{SDL\_FreeSurface}
+	Pega la superficie origen en la superficie destino
+	
+	\emph{Parámetros}:
+	\begin{itemize}
+	    \item SDL\_Surface *src: superficie origen
+	    \item SDL\_Rect *srcrect: recuadro de la imagen origen a copiar
+	    \item SDL\_Surface *dst: superficie destino
+	    \item SDL\_Rect *drcrect: recuadro de la imagen destino a ocupar
+	\end{itemize}
+	
+	\emph{Devuelve}: $0$ si todo va bien, $-1$ si falla.
+    \end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Pong - Paso 2 - SDL\_Flip}
+	
+\begin{verbatim}
+int SDL_Flip(SDL_Surface *screen);
+\end{verbatim}
+
+    \begin{block}{SDL\_Flip}
+	Intercambia el buffer temporal con la ventana (muestra nuestro \emph{collage})
+	
+	\emph{Parámetros}:
+	\begin{itemize}
+	    \item SDL\_Surface *screen: superficie principal que representa a la ventana
+	\end{itemize}
+	
+	\emph{Devuelve}: $0$ si todo va bien, $-1$ si falla.
+    \end{block}
+
+\end{frame}
+
 \begin{frame}
 	\frametitle{Pong - Paso 2}
 	
