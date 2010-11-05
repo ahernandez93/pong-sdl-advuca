@@ -54,7 +54,7 @@ int Juego_procesar_eventos(Juego juego)
 	int salir = 0;
 	
 	/* Actualizamos el teclado */
-	juego->teclado = SDL_GetKeyState(NULL);
+	juego->teclado = /* */
 	
 	/* Mientras queden eventos en la cola de eventos */
 	while(SDL_PollEvent(&event)){
@@ -91,7 +91,7 @@ Juego Juego_crear(void)
 	juego->pantalla = Juego_iniciar_SDL();
 	
 	/* Inicializamos el teclado */
-	juego->teclado = SDL_GetKeyState(NULL);
+	juego->teclado = /* */
 	
 	return juego;
 }
