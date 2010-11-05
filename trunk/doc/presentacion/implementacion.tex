@@ -55,6 +55,181 @@
 
 \end{frame}
 
+\begin{frame}[fragile]
+    \frametitle{Pong - Paso 1 - SDL\_Init}
+	
+\begin{verbatim}
+int SDL_Init(Uint32 flags);
+\end{verbatim}
+
+    \begin{block}{SDL\_Init}
+	Inicia SDL y los subsistemas que queramos
+	
+	\emph{Parámetros}:
+	\begin{itemize}
+	    \item Uint32 flags: susbistemas a inicializar. Se combinan con $||$
+		\begin{itemize}
+		    \item SDL\_INIT\_TIMER
+		    \item SDL\_INIT\_AUDIO
+		    \item SDL\_INIT\_VIDEO
+		    \item SDL\_INIT\_CDROM
+		    \item SDL\_INIT\_JOYSTICK
+		    \item SDL\_INIT\_EVERYTHING
+		\end{itemize}
+	\end{itemize}
+	
+	\emph{Devuelve}: $0$ si tiene éxito, $-1$ en caso contrario
+
+    \end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Pong - Paso 1 - SDL\_Quit}
+	
+\begin{verbatim}
+void SDL_Quit(void);
+\end{verbatim}
+
+    \begin{block}{SDL\_Quit}
+	Cierra SDL y todos sus subsistemas
+    \end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Pong - Paso 1 - atexit}
+	
+\begin{verbatim}
+int atexit(void (*function) (void));
+\end{verbatim}
+
+    \begin{block}{atexit}
+	Llama a una función de tipo \emph{void funcion(void)} al terminar la ejecución
+	
+	\emph{Parámetros}:
+	\begin{itemize}
+	    \item void (*function) (void): puntero a una functión que recibe y devuelve void.
+	    
+	    Ejemplo:
+	    \begin{verbatim}
+	    atexit(SDL_Quit);
+	    \end{verbatim}
+	\end{itemize}
+	
+	\emph{Devuelve}: $0$ si tiene éxito, distinto si falla
+    \end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Pong - Paso 1 - SDL\_SetVideoMode}
+	
+\begin{verbatim}
+SDL_Surface *SDL_SetVideoMode(int width, int height,
+                              int bpp, Uint32 flags);
+\end{verbatim}
+
+    \begin{block}{SDL\_SetVideoMode}
+	Crea la superficie principal (nuestra ventana)
+	
+	\emph{Parámetros}:
+	\begin{itemize}
+	    \item int width: ancho en píxeles
+	    \item int height: alto en píxeles
+	    \item int bpp: bits por píxel (profundidad)
+	    \item Uint32 flags: opciones:
+	    \begin{itemize}
+		    \item SDL\_HWSURFACE
+		    \item SDL\_DOUBLEBUF
+	    \end{itemize}
+	\end{itemize}
+	
+	\emph{Devuelve}: superficie principal o NULL si hay erores
+    \end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Pong - Paso 1 - SDL\_WM\_SetCaption}
+	
+\begin{verbatim}
+void SDL_WM_SetCaption(const char *title,
+                       const char *icon);
+\end{verbatim}
+
+    \begin{block}{SDL\_WM\_SetCaption}
+	Establece título e icono de la ventana
+	
+	\emph{Parámetros}:
+	\begin{itemize}
+	    \item const char *title: cadena con el título ("Pong")
+	    \item const char *icon: cadena con la ruta del icono
+	\end{itemize}
+    \end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Pong - Paso 1 - SDL\_ShowCursor}
+	
+\begin{verbatim}
+int SDL_ShowCursor(int toggle);
+\end{verbatim}
+
+    \begin{block}{SDL\_ShowCursor}
+	Muestra u oculta el cursor en la ventana
+	
+	\emph{Parámetros}:
+	\begin{itemize}
+	    \item int toggle: SDL\_ENABLE, SDL\_DISABLE o SDL\_QUERY (consultar)
+	\end{itemize}
+	
+	\emph{Devuelve}: estado del cursor (SDL\_ENABLE o SDL\_DISABLE)
+    \end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Pong - Paso 1 - TTF\_Init}
+	
+\begin{verbatim}
+int TTF_Init();
+\end{verbatim}
+
+    \begin{block}{TTF\_Init}
+	Inicializa librería auxiliar para fuentes
+	
+	\emph{Devuelve}: $0$ si tiene éxito, $-1$ en caso contrario
+    \end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Pong - Paso 1 - SDL\_GetKeyState}
+	
+\begin{verbatim}
+Uint8 *SDL_GetKeyState(int *numkeys);
+\end{verbatim}
+
+    \begin{block}{SDL\_GetKeyState}
+	Captura el estado del teclado completo
+	
+	\emph{Parámetros}:
+	\begin{itemize}
+	    \item int *numkeys: aquí se almacena el número de teclas (podemos pasarle NULL)
+	\end{itemize}
+	
+	\emph{Devuelve}: vector con el teclado mapeado.	Ejemplo:
+\begin{verbatim}
+teclado = SDL_GetKeyState(NULL);
+if(teclado[SDLK_UP])
+    /* Hemos pulsado arriba */
+\end{verbatim}
+\end{block}
+
+\end{frame}
+
 \begin{frame}
 	\frametitle{Pong - Paso 1}
 	
