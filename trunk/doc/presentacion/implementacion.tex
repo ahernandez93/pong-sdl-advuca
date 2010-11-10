@@ -41,9 +41,41 @@
 
 \end{frame}
 
+
+\begin{frame}[fragile]
+	\frametitle{En cada paso}
+    
+    \begin{columns}[c]
+	\column{175pt}
+
+	\begin{center}
+	    Vamos a estructurar cada paso de la siguiente manera:
+	\end{center}
+	
+	\begin{block}{En cada paso}
+	    \begin{itemize}
+		\item Objetivos del paso
+		\item Algún concepto
+		\item Funciones SDL necesarias
+		\item Hora de currar
+		\item Resultado
+	    \end{itemize}
+	\end{block}
+	
+	\column{125pt}
+	\begin{center}
+		\includegraphics[scale=0.3]{img/1up.jpg}
+	\end{center}	
+	
+    \end{columns}
+
+\end{frame}
+
 \begin{frame}
 	\frametitle{Pong - Paso 1}
 	
+    \begin{columns}[c]
+	\column{175pt}
 	\begin{block}{Objetivos}
 		\begin{itemize}
 			\item Inicializar SDL
@@ -52,6 +84,12 @@
 			\item Cerrar SDL
 		\end{itemize}            
 	\end{block}
+    \column{125pt}
+	\begin{center}
+		\includegraphics[scale=0.6]{img/checklist.jpg}
+	\end{center}	
+	
+    \end{columns}
 
 \end{frame}
 
@@ -258,7 +296,8 @@ if(teclado[SDLK_UP])
 
 \begin{frame}
 	\frametitle{Pong - Paso 2}
-	
+    \begin{columns}[c]
+	\column{175pt}
 	\begin{block}{Objetivos}
 		\begin{itemize}
 			\item Módulo de carga y dibujado de imágenes
@@ -266,6 +305,12 @@ if(teclado[SDLK_UP])
 		\end{itemize}            
 	\end{block}
 
+    \column{125pt}
+	\begin{center}
+		\includegraphics[scale=0.6]{img/checklist.jpg}
+	\end{center}	
+	
+    \end{columns}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -402,7 +447,8 @@ int SDL_Flip(SDL_Surface *screen);
 
 \begin{frame}
 	\frametitle{Pong - Paso 3}
-	
+    \begin{columns}[c]
+	\column{175pt}
 	\begin{block}{Objetivos}
 		\begin{itemize}
 			\item Módulo para las palas
@@ -411,7 +457,67 @@ int SDL_Flip(SDL_Surface *screen);
 		\end{itemize}            
 	\end{block}
 
+    \column{125pt}
+	\begin{center}
+		\includegraphics[scale=0.6]{img/checklist.jpg}
+	\end{center}	
+	
+    \end{columns}
 \end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Pong - Paso 3 - SDL\_GetTicks}
+	
+\begin{verbatim}
+Uint32 SDL_GetTicks(void);
+\end{verbatim}
+
+    \begin{block}{SDL\_GetTicks}
+	\emph{Devuelve}: milisegundos desde que inicializamos SDL
+    \end{block}
+    
+    Si llamamos a \emph{SDL\_GetTicks} en cada frame, podremos conocer
+    el tiempo que pasa entre frames.
+    
+\begin{verbatim}
+Uint32 t0 = SDL_GetTicks();
+Uint32 t1 = t0;
+
+while(!salir) {
+    t1 = SDL_GetTicks();
+    printf("Tiempo entre frames %d\n", t1 - t0);
+    t0 = t1;
+}
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Pong - Paso 3 - SDL\_Delay}
+	
+\begin{verbatim}
+void SDL_Delay(Uint32 ms);
+\end{verbatim}
+
+    \begin{block}{SDL\_Delay}
+	Inserta un retardo en nuestra aplicación
+	
+	\emph{Parámetros}:
+	\begin{itemize}
+	    \item Uint32 ms: entero indicando los milisegundos que esperaremos
+	\end{itemize}
+	
+	Lo utilizamos para controlar el \emph{framerate}
+    \end{block}
+    
+    Tiempo de espera:
+\begin{verbatim}
+if((t1 - t0) < (1000 / FPS))
+     SDL_Delay((1000 / FPS) - (t1 - t0));
+\end{verbatim}
+
+\end{frame}
+
 
 \begin{frame}
 	\frametitle{Pong - Paso 3}
@@ -441,7 +547,8 @@ int SDL_Flip(SDL_Surface *screen);
 
 \begin{frame}
 	\frametitle{Pong - Paso 4}
-	
+    \begin{columns}[c]
+	\column{175pt}
 	\begin{block}{Objetivos}
 		\begin{itemize}
 			\item Módulo de la pelota
@@ -449,7 +556,12 @@ int SDL_Flip(SDL_Surface *screen);
 			\item La pelota atraviesa las palas (por ahora)
 		\end{itemize}            
 	\end{block}
-
+    \column{125pt}
+	\begin{center}
+		\includegraphics[scale=0.6]{img/checklist.jpg}
+	\end{center}	
+	
+    \end{columns}
 \end{frame}
 
 \begin{frame}
@@ -480,7 +592,8 @@ int SDL_Flip(SDL_Surface *screen);
 
 \begin{frame}
 	\frametitle{Pong - Paso 5}
-	
+    \begin{columns}[c]
+	\column{175pt}
 	\begin{block}{Objetivos}
 		\begin{itemize}
 			\item Colisión con las palas
@@ -488,7 +601,13 @@ int SDL_Flip(SDL_Surface *screen);
 			\item La IA sigue a la pelota en el eje Y
 		\end{itemize}            
 	\end{block}
-
+    
+    \column{125pt}
+	\begin{center}
+		\includegraphics[scale=0.6]{img/checklist.jpg}
+	\end{center}	
+	
+    \end{columns}
 \end{frame}
 
 \begin{frame}
@@ -519,7 +638,8 @@ int SDL_Flip(SDL_Surface *screen);
 
 \begin{frame}
 	\frametitle{Pong - Paso 6}
-	
+    \begin{columns}[c]
+	\column{175pt}
 	\begin{block}{Objetivos}
 		\begin{itemize}
 			\item Creación del módulo marcador
@@ -528,6 +648,82 @@ int SDL_Flip(SDL_Surface *screen);
 			\item El marcador se reinicia si el jugador falla
 		\end{itemize}            
 	\end{block}
+	
+    \column{125pt}
+	\begin{center}
+		\includegraphics[scale=0.6]{img/checklist.jpg}
+	\end{center}	
+	
+    \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Pong - Paso 6 - TTF\_OpenFont}
+	
+\begin{verbatim}
+TTF_Font *TTF_OpenFont(const char *file,
+                       int ptsize);
+\end{verbatim}
+
+    \begin{block}{TTF\_OpenFont}
+	Carga una fuente ttf en memoria
+	
+	\emph{Parámetros}:
+	\begin{itemize}
+	    \item const char *file: ruta del fichero con la fuente
+	    \item int ptsize: tamaño en puntos de la fuente
+	\end{itemize}
+	
+	\emph{Devuelve}: fuente lista para ser utilizada, NULL si hay errores
+
+    \end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Pong - Paso 6 - TTF\_CloseFont}
+	
+\begin{verbatim}
+void TTF_CloseFont(TTF_Font *font);
+\end{verbatim}
+
+    \begin{block}{TTF\_CloseFont}
+	Libera la memoria ocupada por la fuente
+	
+	\emph{Parámetros}:
+	\begin{itemize}
+	    \item TTF\_Font *font: fuente a eliminar
+	\end{itemize}
+
+    \end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Pong - Paso 6 - TTF\_RenderUTF8\_Solid}
+	
+\begin{verbatim}
+SDL_Surface *TTF_RenderUTF8_Solid(TTF_Font *font,
+                                  const char *text,
+                                  SDL_Color fg);
+\end{verbatim}
+
+    \begin{block}{TTF\_RenderUTF8\_Solid}
+	Renderiza texto en una superficie SDL
+	
+	\emph{Parámetros}:
+	\begin{itemize}
+	    \item TTF\_Font *font: fuente a utilizar en el renderizado
+	    \item const char *text: cadena a renderizar
+	    \item SDL\_Color fg: color del texto
+	\end{itemize}
+	
+	\emph{Devuelve}: superficie SDL
+
+    \end{block}
+    
+    Para adaptar la superficie deberemos llamar a \emph{SDL\_DisplayFormatAlpha}
+    antes de hacer \emph{SDL\_BlitSurface}
 
 \end{frame}
 
