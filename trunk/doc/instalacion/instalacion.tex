@@ -65,6 +65,24 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\section{IntroducciÛn}
+\label{sec:intro}
+
+\paragraph{}
+Si est·s leyendo esto, probablemente estÈs interesado o inscrito
+en el taller que organiza la AsociaciÛn de Desarrollo de Videojuegos
+de la Universidad de C·diz (ADVUCA), \emph{IntroducciÛn al Desarrollo
+de Videojuegos con un Pong}. Esta pequeÒa guÌa os ayudar· a instalar
+las herramientas que necesitaremos en el taller tanto si utiliz·is
+un sistema GNU/Linux como Windows. Esto nos ayudar· a hacer el taller
+m·s din·mico y no perder tiempo en algo que podÈis hacer en vuestras casas.
+
+\paragraph{}
+Por sencillez es recomendable utilizar Linux. La biblioteca SDL (necesaria
+para el taller) se instala con una lÌnea de terminal en GNU/Linux.
+En cambio, si utilizas Windows, deber·s seguir un proceso simple pero delicado.
+Si te equivocas, es muy probable que llegues al taller y no te funcione nada.
+
 \section{Instalaci√≥n de la biblioteca SDL en GNU/Linux}
 \label{sec:linux}
 
@@ -79,7 +97,7 @@ sudo apt-get install gcc make libsdl1.2-dev libsdl-image1.2-dev \
 \end{verbatim}
 
 \paragraph{}
-En sistemas no basados en Debian los paquetes no var√≠an, simplemente habr√≠a
+F·cil, øverdad? En sistemas no basados en Debian los paquetes no var√≠an, simplemente habr√≠a
 que cambiar el nombre del programa para instalar paquetes. Por ejemplo:
 \emph{yum}.
 
@@ -107,9 +125,9 @@ GCC (a trav√©s de MinGW) por lo que trabajaremos aproximadamente sobre lo mismo.
 \subsection{SDL}
 
 \paragraph{}
-Muy bien, t√∫ lo has querido, has optado por instalar SDL en Windows. Sigue estas
-\textbf{largas} instrucciones con cuidado si no quieres tener problemas
-a la hora de compilar tu proyecto.
+Prep·rate, porque en el proceso de instalaciÛn de SDL en Windows hay que manejar
+algunos ficheros y directorios delicados. Si te equivocas en alguna ruta es muy
+probable que despuÈs no puedas compilar un proyecto que use SDL.
 
 \subsubsection{SDL b√°sico}
 
@@ -118,22 +136,87 @@ a la hora de compilar tu proyecto.
 	\begin{verbatim}
 	http://www.libsdl.org/release/SDL-1.2.14-win32.zip
 	\end{verbatim}
-	\item Descomprime el fichero
-	\item Copia el fichero \emph{SDL.dll} en la carpeta de instalaci√≥n
-	de Mingw, probablemente en \emph{C:/Mingw/bin}.
+	\item Descomprime el fichero \emph{SDL-1.2.14-win32.zip}.
+	\item Copia el fichero \emph{SDL.dll} en la carpeta \emph{bin} de instalaci√≥n
+	de Mingw, probablemente en:
+	\begin{verbatim}
+	C:/Archivos de Programa/CodeBlocks/MinGW/bin
+	\end{verbatim}
 	\item Descarga el paquete de desarrollo de SDL desde:
 	\begin{verbatim}
 	http://www.libsdl.org/release/SDL-devel-1.2.14-mingw32.tar.gz
 	\end{verbatim}
-	\item Descomprime el fichero.
+	\item Descomprime el fichero \emph{SDL-devel-1.2.14-mingw32.tar.gz}.
 	\item Copia el contenido del directorio \emph{lib} en el directorio
-	de Mingw. Seguramente quede: \emph{C:/Mingw/lib}.
+	de Mingw. Seguramente quede:
+	\begin{verbatim}
+	C:/Archivos de Programa/CodeBlocks/MinGW/lib
+	\end{verbatim}
 	\item Copia el directorio \emph{SDL} situado dentro de \emph{include}
-	a la instalaci√≥n de Mingw. Debe quedar \emph{C:/Mingw/include/SDL}.
+	a la instalaci√≥n de Mingw. Debe quedar:
+	\begin{verbatim}
+	C:/Archivos de Programa/CodeBlocks/MinGW/include/SDL
+	\end{verbatim}
 \end{itemize}
 
 \subsubsection{SDL Image}
 
+\begin{itemize}
+	\item Descarga el paquete de ejecuci√≥n de SDL Image:
+	\begin{verbatim}
+	http://www.libsdl.org/projects/SDL_image/release/SDL_image-1.2.10-win32.zip
+	\end{verbatim}
+	\item Descomprime el fichero \emph{SDL\_image-1.2.10-win32.zip}.
+	\item Copia los ficheros \emph{.dll} en la carpeta \emph{bin} de instalaci√≥n
+	de Mingw, probablemente en:
+	\begin{verbatim}
+	C:/Archivos de Programa/CodeBlocks/MinGW/bin
+	\end{verbatim}
+	\item Descarga el paquete de desarrollo de SDL Image desde:
+	\begin{verbatim}
+	http://www.libsdl.org/projects/SDL_image/release/SDL_image-devel-1.2.10-VC.zip
+	\end{verbatim}
+	\item Descomprime el fichero \emph{SDL\_image-devel-1.2.10-VC.zip}.
+	\item Copia el contenido del directorio \emph{lib} en el directorio
+	de Mingw. Como antes, seguramente sea:
+	\begin{verbatim}
+	C:/Archivos de Programa/CodeBlocks/MinGW/lib
+	\end{verbatim}
+	\item Copia el directorio \emph{include} a la instalaci√≥n de Mingw.
+	Debe estar dentro del directorio \emph{SDL} de la biblioteca b·sica:
+	\begin{verbatim}
+	C:/Archivos de Programa/CodeBlocks/MinGW/include/SDL/
+	\end{verbatim}
+\end{itemize}
+
 \subsubsection{SDL TTF}
+
+\begin{itemize}
+	\item Descarga el paquete de ejecuci√≥n de SDL TTF:
+	\begin{verbatim}
+	http://www.libsdl.org/projects/SDL_ttf/release/SDL_ttf-2.0.10-win32.zip
+	\end{verbatim}
+	\item Descomprime el fichero \emph{SDL\_ttf-2.0.10-win32.zip}.
+	\item Copia los ficheros \emph{.dll} en la carpeta \emph{bin} de instalaci√≥n
+	de Mingw, probablemente en:
+	\begin{verbatim}
+	C:/Archivos de Programa/CodeBlocks/MinGW/bin
+	\end{verbatim}
+	\item Descarga el paquete de desarrollo de SDL Image desde:
+	\begin{verbatim}
+	http://www.libsdl.org/projects/SDL_ttf/release/SDL_ttf-devel-2.0.10-VC.zip
+	\end{verbatim}
+	\item Descomprime el fichero \emph{SDL\_ttf-devel-2.0.10-VC.zip}.
+	\item Copia el contenido del directorio \emph{lib} en el directorio
+	de Mingw. Como antes, seguramente sea:
+	\begin{verbatim}
+	C:/Archivos de Programa/CodeBlocks/MinGW/lib
+	\end{verbatim}
+	\item Copia el directorio \emph{include} a la instalaci√≥n de Mingw.
+	Debe estar dentro del directorio \emph{SDL} de la biblioteca b·sica:
+	\begin{verbatim}
+	C:/Archivos de Programa/CodeBlocks/MinGW/include/SDL/
+	\end{verbatim}
+\end{itemize}
 
 \end{document}
