@@ -9,21 +9,21 @@
 
 %  Datos del documento a Editar %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Título del documento
+% TÃ­tulo del documento
 \def \titlename{Introducción al Desarrollo de Videojuegos con un Pong} 
 
 \def \subtitulo{Instalación de SDL en Linux y en Windows}
 
 % Autores separados por \and
-\def \authorname{David Saltares Márquez}
+\def \authorname{David Saltares MÃ¡rquez}
 
-% Versión de la revisión (En blanco para documentos nuevos)
+% VersiÃ³n de la revisiÃ³n (En blanco para documentos nuevos)
 \def \revname{\ }
 
 % Fecha (En blanco para la fecha de hoy)
 \def \datename{}
 
-% Configuración  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ConfiguraciÃ³n  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \title{\titlename}
 \author{\authorname}
@@ -44,12 +44,12 @@
 
 \input{\plpath/include/portada.tex}
 
-% Índice %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ãndice %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\tableofcontents
 %\cleardoublepage
 
-% Cambios en esta Revisión %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Cambios en esta RevisiÃ³n %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\section{Cambios}
 
 %\paragraph{}
@@ -65,22 +65,22 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Introducci�n}
+\section{Introducción}
 \label{sec:intro}
 
 \paragraph{}
-Si est�s leyendo esto, probablemente est�s interesado o inscrito
-en el taller que organiza la Asociaci�n de Desarrollo de Videojuegos
-de la Universidad de C�diz (ADVUCA), \emph{Introducci�n al Desarrollo
-de Videojuegos con un Pong}. Esta peque�a gu�a os ayudar� a instalar
-las herramientas que necesitaremos en el taller tanto si utiliz�is
-un sistema GNU/Linux como Windows. Esto nos ayudar� a hacer el taller
-m�s din�mico y no perder tiempo en algo que pod�is hacer en vuestras casas.
+Si estás leyendo esto, probablemente estés interesado o inscrito
+en el taller que organiza la Asociación de Desarrollo de Videojuegos
+de la Universidad de Cádiz (ADVUCA), \emph{Introducción al Desarrollo
+de Videojuegos con un Pong}. Esta pequeña guía os ayudará a instalar
+las herramientas que necesitaremos en el taller tanto si utilizáis
+un sistema GNU/Linux como Windows. Esto nos ayudará a hacer el taller
+más dinámico y no perder tiempo en algo que podéis hacer en vuestras casas.
 
 \paragraph{}
 Por sencillez es recomendable utilizar Linux. La biblioteca SDL (necesaria
-para el taller) se instala con una l�nea de terminal en GNU/Linux.
-En cambio, si utilizas Windows, deber�s seguir un proceso simple pero delicado.
+para el taller) se instala con una línea de terminal en GNU/Linux.
+En cambio, si utilizas Windows, deberás seguir un proceso simple pero delicado.
 Si te equivocas, es muy probable que llegues al taller y no te funcione nada.
 
 \section{Instalación de la biblioteca SDL en GNU/Linux}
@@ -97,7 +97,7 @@ sudo apt-get install gcc make libsdl1.2-dev libsdl-image1.2-dev \
 \end{verbatim}
 
 \paragraph{}
-F�cil, �verdad? En sistemas no basados en Debian los paquetes no varían, simplemente habría
+Fácil, ¿verdad? En sistemas no basados en Debian los paquetes no varían, simplemente habrá
 que cambiar el nombre del programa para instalar paquetes. Por ejemplo:
 \emph{yum}.
 
@@ -125,9 +125,9 @@ GCC (a través de MinGW) por lo que trabajaremos aproximadamente sobre lo mismo.
 \subsection{SDL}
 
 \paragraph{}
-Prep�rate, porque en el proceso de instalaci�n de SDL en Windows hay que manejar
+Prepárate, porque en el proceso de instalación de SDL en Windows hay que manejar
 algunos ficheros y directorios delicados. Si te equivocas en alguna ruta es muy
-probable que despu�s no puedas compilar un proyecto que use SDL.
+probable que después no puedas compilar un proyecto que use SDL.
 
 \subsubsection{SDL básico}
 
@@ -183,7 +183,7 @@ probable que despu�s no puedas compilar un proyecto que use SDL.
 	C:/Archivos de Programa/CodeBlocks/MinGW/lib
 	\end{verbatim}
 	\item Copia el directorio \emph{include} a la instalación de Mingw.
-	Debe estar dentro del directorio \emph{SDL} de la biblioteca b�sica:
+	Debe estar dentro del directorio \emph{SDL} de la biblioteca básica:
 	\begin{verbatim}
 	C:/Archivos de Programa/CodeBlocks/MinGW/include/SDL/
 	\end{verbatim}
@@ -213,7 +213,7 @@ probable que despu�s no puedas compilar un proyecto que use SDL.
 	C:/Archivos de Programa/CodeBlocks/MinGW/lib
 	\end{verbatim}
 	\item Copia el directorio \emph{include} a la instalación de Mingw.
-	Debe estar dentro del directorio \emph{SDL} de la biblioteca b�sica:
+	Debe estar dentro del directorio \emph{SDL} de la biblioteca básica:
 	\begin{verbatim}
 	C:/Archivos de Programa/CodeBlocks/MinGW/include/SDL/
 	\end{verbatim}
