@@ -1,0 +1,139 @@
+% Tipo de documento
+\documentclass[16pt,spanish]{article}
+
+% Ruta a la plantilla
+\def \plpath{.}
+
+% Paquetes
+\input{\plpath/include/packages.tex}
+
+%  Datos del documento a Editar %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Título del documento
+\def \titlename{Introducción al Desarrollo de Videojuegos con un Pong} 
+
+\def \subtitulo{Instalación de SDL en Linux y en Windows}
+
+% Autores separados por \and
+\def \authorname{David Saltares Márquez}
+
+% Versión de la revisión (En blanco para documentos nuevos)
+\def \revname{\ }
+
+% Fecha (En blanco para la fecha de hoy)
+\def \datename{}
+
+% Configuración  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{\titlename}
+\author{\authorname}
+%\date{\datename}
+
+% Cabecera y pie del documento
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0.2pt}
+\fancyhead[HC]{ {\footnotesize \titlename} }
+\fancyhead[FR]{ {\footnotesize \thepage} }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+% Portada %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{\plpath/include/portada.tex}
+
+% Índice %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\tableofcontents
+%\cleardoublepage
+
+% Cambios en esta Revisión %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section{Cambios}
+
+%\paragraph{}
+%Cambios con respecto a versiones anteriores del documento.
+
+%\begin{itemize}
+%	\item {\bf Revision 1} 
+%		\begin{itemize}
+%			\item Cambio 1
+%			\item Cambio 2
+%		\end{itemize}
+%\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Instalación de la biblioteca SDL en GNU/Linux}
+\label{sec:linux}
+
+\paragraph{}
+Suponemos que tienes una distribución basada en Debian como Ubuntu o Guadalinex
+por lo que dispones de \emph{apt-get}. Para instalar SDL y las herramientas
+que utilizaremos en el taller, abre una terminal y ejecuta:
+
+\begin{verbatim}
+sudo apt-get install gcc make libsdl1.2-dev libsdl-image1.2-dev \
+                     libsdl-ttf2.0-dev
+\end{verbatim}
+
+\paragraph{}
+En sistemas no basados en Debian los paquetes no varían, simplemente habría
+que cambiar el nombre del programa para instalar paquetes. Por ejemplo:
+\emph{yum}.
+
+\section{Instalación de la biblioteca SDL en Windows}
+
+\paragraph{}
+El proceso de instalación de SDL en Windows es bastante más largo que en GNU/Linux
+(quizás eso sea una señal para que cambies de sistema operativo). Primero
+instalaremos un entorno de desarrollo integrado (IDE) libre llamado CodeBlocks
+y más tarde procederemos con SDL. Debes saber que CodeBlocks utiliza el compilador
+GCC (a través de MinGW) por lo que trabajaremos aproximadamente sobre lo mismo.
+
+\subsection{CodeBlocks}
+
+\begin{itemize}
+	\item Acude a la sección de descargas de la página official de Code Blocks
+	y selecciona la versión para Windows que incluye MinGW:
+	\begin{verbatim}
+	http://www.codeblocks.org/downloads/26#windows
+	\end{verbatim}
+	\item Ejecuta el instalador, dale los permisos oportunos y elije las opciones
+	por defecto.
+\end{itemize}
+
+\subsection{SDL}
+
+\paragraph{}
+Muy bien, tú lo has querido, has optado por instalar SDL en Windows. Sigue estas
+\textbf{largas} instrucciones con cuidado si no quieres tener problemas
+a la hora de compilar tu proyecto.
+
+\subsubsection{SDL básico}
+
+\begin{itemize}
+	\item Descarga el paquete de ejecución de SDL:
+	\begin{verbatim}
+	http://www.libsdl.org/release/SDL-1.2.14-win32.zip
+	\end{verbatim}
+	\item Descomprime el fichero
+	\item Copia el fichero \emph{SDL.dll} en la carpeta de instalación
+	de Mingw, probablemente en \emph{C:/Mingw/bin}.
+	\item Descarga el paquete de desarrollo de SDL desde:
+	\begin{verbatim}
+	http://www.libsdl.org/release/SDL-devel-1.2.14-mingw32.tar.gz
+	\end{verbatim}
+	\item Descomprime el fichero.
+	\item Copia el contenido del directorio \emph{lib} en el directorio
+	de Mingw. Seguramente quede: \emph{C:/Mingw/lib}.
+	\item Copia el directorio \emph{SDL} situado dentro de \emph{include}
+	a la instalación de Mingw. Debe quedar \emph{C:/Mingw/include/SDL}.
+\end{itemize}
+
+\subsubsection{SDL Image}
+
+\subsubsection{SDL TTF}
+
+\end{document}
