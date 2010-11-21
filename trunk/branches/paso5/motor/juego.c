@@ -165,7 +165,9 @@ void Juego_comprobar_colisiones(Bola bola, Pong pong1, Pong pong2)
 
 	/* Comprobamos si hay colisión con el pong1 */
 	else if(Juego_colisiones_rectangulo(rectangulo_bola, rectangulo_pong1)){
-			Bola_invertir_velocidadX(bola);
+		if( rectangulo_bola.x > rectangulo_pong1.x + rectangulo_pong1.w - 10 ) {
+ 			Bola_invertir_velocidadX(bola);
+		}
 	}
 
 	/* Comprobamos si hay colisión con el pong2 */
