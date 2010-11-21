@@ -171,13 +171,15 @@ void Juego_comprobar_colisiones(Bola bola, Pong pong1, Pong pong2, Marcador marc
 
 	/* Comprobamos si hay colisión con el pong1 */
 	else if(Juego_colisiones_rectangulo(rectangulo_bola, rectangulo_pong1)){
-			Bola_invertir_velocidadX(bola);
-			Marcador_incrementar(marcador);
+		if( rectangulo_bola.x > rectangulo_pong1.x + rectangulo_pong1.w - 10 ) {
+ 			Bola_invertir_velocidadX(bola);
+ 			Marcador_incrementar(marcador);
+		}
 	}
 
 	/* Comprobamos si hay colisión con el pong2 */
 	else if(Juego_colisiones_rectangulo(rectangulo_bola, rectangulo_pong2)){
-			Bola_invertir_velocidadX(bola);
+		Bola_invertir_velocidadX(bola);
 	}
 
 	/* Comprobamos si ha entrado en alguna de las dos porterías */

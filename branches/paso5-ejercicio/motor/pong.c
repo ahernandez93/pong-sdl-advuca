@@ -71,6 +71,7 @@ void Pong_actualizar_ia(Pong pong, Bola bola)
 	/* SUPER-IA ¡¡¡¡INVENCIBLE!!!! */
 	
 	/* Si la bola está más arriba y va en nuestra dirección */
+	/* Le ponemos +10 para que el Pong tarde un poco en reaccionar ante el movimiento de la bola */
 	if(bola->y + 10 < pong->y + pong->imagen->h/2){
 		if((bola->x > pong->x && bola->vx < 0) || (bola->x < pong->x && bola->vx > 0))
 		pong->y -= pong->vy;

@@ -137,6 +137,8 @@ void Juego_control_tiempo(Juego juego)
 
 int Juego_colisiones_rectangulo(SDL_Rect rect1, SDL_Rect rect2)
 {
+	/* Comprobamos si dos rectángulos están superpuestos */
+	
 	if(((rect1.x + rect1.w) > rect2.x) &&
 	   ((rect1.y + rect1.h) > rect2.y) &&
 	   ((rect2.x + rect2.w) > rect1.x) &&

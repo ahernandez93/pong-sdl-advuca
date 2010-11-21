@@ -20,7 +20,7 @@
 \begin{verbatim}
 |- pong
     |- makefile
-    |- main.cpp
+    |- main.c
     |- motor
     |    |- fichero.c
     |    |- fichero.h
@@ -383,7 +383,7 @@ int SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect,
                     SDL_Surface *dst, SDL_Rect *dstrect);
 \end{verbatim}
 
-    \begin{block}{SDL\_FreeSurface}
+    \begin{block}{SDL\_BlitSurface}
 	Pega la superficie origen en la superficie destino
 	
 	\emph{Parámetros}:
@@ -481,7 +481,6 @@ Uint32 SDL_GetTicks(void);
     
 \begin{verbatim}
 Uint32 t0 = SDL_GetTicks();
-Uint32 t1 = t0;
 
 while(!salir) {
     t1 = SDL_GetTicks();
