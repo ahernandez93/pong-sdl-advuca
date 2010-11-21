@@ -71,13 +71,13 @@ void Marcador_dibujar(Marcador marcador, SDL_Surface* pantalla)
 	sprintf(buffer, "Actuales: %d", marcador->p_actuales);
 	
 	/* Renderizamos el texto en una superficie temporal */
-	if((temporal = TTF_RenderUTF8_Solid(marcador->fuente, buffer, marcador->color)) == NULL){
+	if((temporal = TTF_RenderUTF8_Blended(marcador->fuente, buffer, marcador->color)) == NULL){
 		printf("ERROR -> Marcador_dibujar(): No se pudo renderizar el texto\n");
 		exit(1);
 	}
 
 	/* Adaptamos la superficie a la pantalla */
-	if((superficie = SDL_DisplayFormat(temporal)) == NULL){
+	if((superficie = SDL_DisplayFormatAlpha(temporal)) == NULL){
 		printf("ERROR -> Marcador_dibujar(): No se pudo adaptar el texto renderizado a la pantalla\n");
 		exit(1);
 	}
