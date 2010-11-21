@@ -23,8 +23,8 @@ OPTIMIZACION := 3
 # Compilador y las opciones 
 CXX = gcc
 CFLAGS = -pedantic -Wall -pipe -ggdb -I$(MOTOR_DIR) -O$(OPTIMIZACION)
-LDFLAGS =  -lSDL -ggdb -lSDL_ttf -lSDL_mixer -lSDL_image
-LDWINFLAGS = -lmingw32 -lSDLmain -lSDL -lSDL_ttf -lSDL_mixer -lSDL_image
+LDFLAGS =  -lSDL -ggdb -lSDL_ttf -lSDL_image
+LDWINFLAGS = -lmingw32 -lSDLmain -lSDL -lSDL_ttf -lSDL_image
 
 # Config para make
 all: $(EXE)
