@@ -162,10 +162,12 @@ void Juego_comprobar_colisiones(Bola bola, Pong pong1, Pong pong2)
 	if(rectangulo_bola.y <= 0 || (rectangulo_bola.y+rectangulo_bola.h) >= PANTALLA_ALTO){
 		Bola_invertir_velocidadY(bola);
 	}
-
-	/* Comprobamos si hay colisión con el pong 1 */
-	else if(/* */)){
-			/* Rebote, invierte velocidad X*/
+	
+	/* Comprobamos si hay colisión con el pong1 */
+	else if(Juego_colisiones_rectangulo(rectangulo_bola, rectangulo_pong1)){
+		if( /* Si la bola está más a la derecha del pong (no nos ha sobrepasado) */) {
+ 			/* Invertimos la velocidad X de la bola */
+		}
 	}
 
 	/* Comprobamos si hay colisión con el pong 2 */
