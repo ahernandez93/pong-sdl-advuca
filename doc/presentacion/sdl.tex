@@ -65,15 +65,20 @@
     \frametitle{Blitting}
     
     
-    \begin{block}{Capas}
+    \begin{block}{Trabajamos con capas}
         \begin{itemize}
-            \item Una SDL\_Surface es una capa sobre la que dibujar
-            \item La SDL\_Surface principal representa la pantalla
-            \item Cargamos imágenes en una SDL\_Surface
-            \item Volcar una superficie sobre otra se llama \textbf{Blitting}
-            \item Volcando superficies componemos la escena
+            \item Utilizamos capas, como en Photoshop o The Gimp
+            \item Cada elemento de la escena se almacena en una capa
+            \item Tenemos un lienzo o capa principal, la pantalla
+            \item Volcamos una capa sobre otra $\rightarrow$ Blitting
         \end{itemize}            
     \end{block}
+    
+    \begin{alertblock}{En SDL es así}
+        \begin{itemize}
+            \item capa = SDL\_Surface
+        \end{itemize}            
+    \end{alertblock}
 
 \end{frame}
 
@@ -92,11 +97,11 @@
     
 	\begin{block}{Doble buffer}
         \begin{itemize}
-            \item Tenemos dos superficies: pantalla y auxiliar
-            \item Hacemos blitting sobre la auxiliar
+            \item Tenemos dos superficies: pantalla y buffer
+            \item Hacemos blitting sobre el buffer
             \item Terminamos de componer la escena
-            \item Intercambiamos pantalla y auxiliar
-            \item Evitamos un horroroso parpadeo
+            \item Intercambiamos pantalla y buffer
+            \item Evitamos un horroroso parpadeo e imágenes a \emph{medio montar}
         \end{itemize}            
     \end{block}
     
