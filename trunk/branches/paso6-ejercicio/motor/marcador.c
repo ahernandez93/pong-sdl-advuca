@@ -18,7 +18,7 @@ Marcador Marcador_crear(void)
 	}
 	
 	/* Posición del marcador */
-
+	/* "x -> 75" e "y -> 25" */
 
 	/* Valor inicial del marcador récord y puntos actuales */
 	
@@ -48,15 +48,16 @@ void Marcador_destruir(Marcador marcador)
 
 void Marcador_incrementar(Marcador marcador)
 {
-	marcador->p_actuales++;
+	/* Incrementamos los puntos actuales */
 	
-	if(marcador->p_actuales > marcador->p_record)
-		marcador->p_record = marcador->p_actuales;
+	if(/* ¿Hemos superado el récord? */) {
+		/* Actualizar récord */
+	}
 }
 
 void Marcador_reiniciar(Marcador marcador)
 {
-	marcador->p_actuales = 0;
+	/* Ponemos los puntos actuales a 0 */
 }
 
 void Marcador_dibujar(Marcador marcador, SDL_Surface* pantalla)
