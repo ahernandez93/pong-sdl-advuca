@@ -215,9 +215,6 @@ void Juego_bucle_principal(Juego juego)
 		/* Colisiones */
 		Juego_comprobar_colisiones(juego->bola, juego->pong1,juego->pong2, juego->marcador);
 
-		/* Borramos la pantalla */
-		SDL_FillRect(juego->pantalla, NULL, SDL_MapRGB(juego->pantalla->format, 0, 0, 0));
-
 		/* Dibujar Mesa */
 		Imagen_dibujar(juego->mesa, juego->pantalla, 0, 0);
 
