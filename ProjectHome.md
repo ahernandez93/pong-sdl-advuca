@@ -1,0 +1,1 @@
+A basic Pong clone written in C using SDL for an ADVUCA workshop. It's purpose is to teach basic concepts on game programming.
